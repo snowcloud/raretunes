@@ -2,7 +2,8 @@
 /bin
 /include
 /lib
-*.pyc
-/raretunes/settings_local.py
 /src
+*.pyc
 /raretunes/raretunesdb
+/raretunes/settings_local.py
+/raretunes/sql_data
