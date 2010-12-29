@@ -1,27 +1,29 @@
-Django>=1.2
-# South
-django-tagging
-textile
-# Markdown
-docutils
-psycopg2
-PIL==1.1.7
-# 
-# -e git+git://github.com/snowcloud/ct-framework.git#egg=ct-framework
-# -e git+git://github.com/snowcloud/ct-groups.git#egg=ct-groups
-# -e git+git://github.com/snowcloud/ct-template.git#egg=ct-template
--e git+git://github.com/snowcloud/sc-utils.git#egg=sc-utils
--e git+git://github.com/snowcloud/django-basic-apps.git#egg=django-basic-apps
-# # this is a fork to fix wiki/models.py
-# -e git+git://github.com/snowcloud/django-wikiapp.git#egg=django-wikiapp
--e hg+http://bitbucket.org/ubernostrum/django-contact-form/#egg=django-contact-form
-# -e git+git://github.com/jtauber/django-notification.git#egg=django-notification
-# # svn checkout http://django-renderform.googlecode.com/svn/trunk/ django-renderform-read-only
-# django-renderform
-# 
-# # ct-framework
-# # django-registration==0.8
--e hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
-# 
-# # ct-groups
-# beautifulsoup
+# Django>=1.2
+# # South
+# django-tagging
+# textile
+# # Markdown
+# docutils
+# # psycopg2
+
+# PIL==1.1.7
+# # 
+# # -e git+git://github.com/snowcloud/ct-framework.git#egg=ct-framework
+# # -e git+git://github.com/snowcloud/ct-groups.git#egg=ct-groups
+# # -e git+git://github.com/snowcloud/ct-template.git#egg=ct-template
+# -e git+git://github.com/snowcloud/sc-utils.git#egg=sc-utils
+# -e git+git://github.com/snowcloud/django-basic-apps.git#egg=django-basic-apps
+# # # this is a fork to fix wiki/models.py
+# # -e git+git://github.com/snowcloud/django-wikiapp.git#egg=django-wikiapp
+# -e hg+http://bitbucket.org/ubernostrum/django-contact-form/#egg=django-contact-form
+# # -e git+git://github.com/jtauber/django-notification.git#egg=django-notification
+# # # svn checkout http://django-renderform.googlecode.com/svn/trunk/ django-renderform-read-only
+# # django-renderform
+# # 
+# # # ct-framework
+# # # django-registration==0.8
+# # -e hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
+# # 
+# # # ct-groups
+# # beautifulsoup
+# python-dev

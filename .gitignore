@@ -2,3 +2,6 @@
 /bin
 /include
 /lib
+*.pyc
+/raretunes/settings_local.py
+/src

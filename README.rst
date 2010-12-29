@@ -5,7 +5,7 @@ SnowCloud.co.uk
 
 About
 -----
-This is the code for the Raretunes.org web site. Please note, it does not include the archive of music itself. The Raretunes archive is accessible online and is also stored on the `Internet Archive <http://archive.org>`_.
+This is the code for the Raretunes.org web site. Please note, it does not include the archive of music itself. The Raretunes archive is accessible online and is also stored on the `Internet Archive <http://www.archive.org/details/raretunes>`_.
 
 THIS PROJECT IS BEING REFACTORED FROM THE EXISTING SITE AND IS NOT COMPLETE AT THE MOMENT.
 
