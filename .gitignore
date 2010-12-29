@@ -5,3 +5,4 @@
 *.pyc
 /raretunes/settings_local.py
 /src
+/raretunes/raretunesdb
