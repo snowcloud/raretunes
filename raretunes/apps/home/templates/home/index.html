@@ -7,11 +7,12 @@
 {% block head_extra %}<script type="text/javascript" src="/media/ss/swfobject.js"></script>{% endblock %}
 
 {% block body_id %}id="home"{% endblock %}
+{% block body_class %}{% endblock %}
 
 {% block pageintro %}
 <h1>An archive of Scottish music</h1>
 <p>Recordings range from near-studio quality to crowded and noisy house sessions, from digital media to old bits of tape, vinyl and 78s.</p>
-<p>From straight-from-the-heart stuff by musicians who never recorded commercially, to old material performed by the stars of the day. <a href="/faq/">Read more...</a></p>
+<p>From straight-from-the-heart stuff by musicians who never recorded commercially, to old material performed by the stars of the day. <a href="/faq/">Read&nbsp;more...</a></p>
 
 {% endblock%}
 {% block content %}
@@ -28,30 +29,32 @@
 {# </script> #}
 
 
+<div class="section">
+<div class="article"><h3>Hear the tunes</h3>
 
-<div class="article"><h1>Hear the tunes</h1>
-
-<p>You can listen to all the music on this site:</p>
+<p>You can listen to all the music on this site, just:</p>
 <ul>
-<li>use the jukebox by selecting from lists (needs Flash)</li>
-<li>go into the recording and go to its page on <a href="http://archive.org">archive.org</a></li>
+<li>click on the play link for each recording</li>
+<li>go to its page on <a href="http://archive.org">archive.org</a> via the information link</li>
 <li>use the <a href="http://songbirdnest.com">Songbird web player</a></li>
 </ul>
 <p>We show links to MP3 files in the recording lists, so you can use other software to download- try the <a href="http://songbirdnest.com">Songbird web player</a> which will let you download into your own library or make playlists of your favourite <em>Rare</em>Tunes.</p>
 </div>
+
+<div class="article"><h3>Rare?</h3>
+    <p>In modern Scots, 'rare' is often used to mean something really enjoyable. The <a href="http://www.dsl.ac.uk/dsl/">Dictionary of the Scots Language</a> quotes Ian Rankin in 'Black and Blue' (1999) writing: <quote>"Jings, but it was rare to be home."</quote></p>
+    <p>If you would like to contribute, then please <a href="/contact/">get in touch</a>. Raretunes started in 2006, and is developed and maintained by <a href="/performers/derek-hoy/">Derek Hoy</a> and <a href="/performers/eydmann">Stuart Eydmann</a> without any external funding.</p>
+    <p>The web site code is now <a href="http://github.org/snowcloud/raretunes">open source</a>.</p>
+</div>
     
-<div class="article"><h1>Creative Commons</h1>
-<a href="http://archive.org"><img class="pic" src="static/images/ia_logo.jpg" alt="Archive.org logo"/></a>
-<p><span class="quote">"Creative Commons provides free tools that let authors, scientists, artists, and educators easily mark their creative work with the freedoms they want it to carry."</span></p>
+<div class="article"><h3>Creative Commons</h3>
+<a href="http://archive.org"><img class="pic" src="static/images/cc_01.png" alt="Archive.org logo"/></a>
+<p><quote>"Creative Commons provides free tools that let authors, scientists, artists, and educators easily mark their creative work with the freedoms they want it to&nbsp;carry."</quote></p>
 
 <p>Most of the recordings here are made available under <a href="http://creativecommons.org/">Creative Commons</a> licences, allowing you to copy them freely for your enjoyment- most only restrict commercial use without getting the owner's agreement.</p>
 
-<p>Our media files are stored on <a href="http://archive.org/">The Internet Archive</a> </p>
+<p>Our recordings are archived on <a href="http://archive.org/">the Internet Archive</a>.</p>
 </div>
 
-<div class="article"><h1>other</h1>
-    <p>In modern Scots, 'rare' is often used to mean something really enjoyable. The <a href="http://www.dsl.ac.uk/dsl/">Dictionary of the Scots Language</a> quotes Ian Rankin in 'Black and Blue' (1999) writing: <span class="quote">"Jings, but it was rare to be home."</span></p>
-    <p>The <em>rare</em> tunes here range  If you would like to contribute, then please <a href="/contact/">get in touch</a>. It's being developed and maintained by <a href="/performers/derek-hoy/">Derek Hoy</a> and <a href="/performers/eydmann">Stuart Eydmann</a>. </p>
 </div>
-
 {% endblock %}

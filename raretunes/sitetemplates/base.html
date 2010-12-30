@@ -26,28 +26,34 @@
     </script>   
 	{% block head_extra %}{% endblock %}
 </head>
-<body {% block body_id %}{% endblock %} class="{% block body_class %}{% endblock %}">
+<body {% block body_id %}{% endblock %} class="{% block body_class %}simple{% endblock %}">
 
-    <div id="header">
+<div id="header" class="group">
         <img src="/static/images/dug_02.jpg"></img>
         <h1><em>rare</em>Tunes</h1>
     <div id="headercontents">
-    <ul id="sitenav">
-        <li class="home"><a href="/">home</a></li>
-        <li class="recordings"><a href="/recordings/">recordings</a></li>
-        <li class="performers"><a href="/performers/">performers</a></li>
-        <li class="tags_nav"><a href="/tags/">tags</a></li>
-        <li class="contact"><a href="/contact/">contact</a></li>
-        <li class="faq"><a href="/faq/">FAQ</a></li>
-
-    </ul>
-</div>
-</div>
-
-    <div id="main" class="group">
-    <div id="pageintro" class="group">
-    {% block pageintro %}{% endblock%}
+        <ul id="sitenav">
+            <li class="home"><a href="/">home</a></li>
+            <li class="recordings"><a href="/recordings/">recordings</a></li>
+            <li class="performers"><a href="/performers/">performers</a></li>
+            <li class="tags_nav"><a href="/tags/">tags</a></li>
+            <li class="contact"><a href="/contact/">contact</a></li>
+            <li class="faq"><a href="/faq/">FAQ</a></li>
+        </ul>
+        {# <div class="search"> #}
+        {#     <form action="http://www.google.com/cse" id="searchbox_014668001863459659633:267jrzaumjs"> #}
+        {#     <input type="hidden" value="014668001863459659633:267jrzaumjs" name="cx"/> #}
+        {#     <input type="text" name="q" /> #}
+        {#     <input type="hidden" value="en" name="hl"/> #}
+        {#     <input type="submit" value="Search" name="sa"/> #}
+        {#     <input type="hidden" value="FORID:0" name="cof"/> #}
+        {#     </form> #}
+        {# </div> #}
     </div>
+</div>
+
+<div id="main" class="group">
+    <div id="pageintro" class="group">{% block pageintro %}{% endblock%}</div>
 
     <div id="maincontent">
     {% block content %}{% endblock%}
@@ -55,16 +61,16 @@
 
     <div id="sidebar">
 
-    <div class="aside links">
-        <strong>Search recordings:</strong>
-        <form action="http://www.google.com/cse" id="searchbox_014668001863459659633:267jrzaumjs">
-        <input type="hidden" value="014668001863459659633:267jrzaumjs" name="cx"/>
-        <input type="text" name="q" />
-        <input type="hidden" value="en" name="hl"/>
-        <input type="submit" value="Search" name="sa"/>
-        <input type="hidden" value="FORID:0" name="cof"/>
-        </form>
-    </div>
+    {# <div class="aside links"> #}
+    {#     <strong>Search recordings:</strong> #}
+    {#     <form action="http://www.google.com/cse" id="searchbox_014668001863459659633:267jrzaumjs"> #}
+    {#     <input type="hidden" value="014668001863459659633:267jrzaumjs" name="cx"/> #}
+    {#     <input type="text" name="q" /> #}
+    {#     <input type="hidden" value="en" name="hl"/> #}
+    {#     <input type="submit" value="Search" name="sa"/> #}
+    {#     <input type="hidden" value="FORID:0" name="cof"/> #}
+    {#     </form> #}
+    {# </div> #}
 
     {% comment %}
     <div class="small box">
@@ -102,6 +108,7 @@
               <li><a href="/recordings/now-westlin-winds-and-slaughtring-guns/">Now westlin winds and slaught'ring guns</a></li>
 
             </ul>
+            <p><a href="/">more...</a></p>
             </div>
     {# {% get_latest recordings 10 as latest_recordings %} #}
     {#      #}
@@ -133,6 +140,7 @@
               <li><a href="/performers/bob-and-bert/"> Bob and Bert</a></li>
 
             </ul>
+            <p><a href="/">more...</a></p>
             </div>
     {# {% get_latest artists 6 as latest_artists %} #}
     {#      #}
@@ -149,27 +157,28 @@
     
 
     <div class="aside links">
-    <strong>Links: </strong>
+    <h3>Links</h3>
     <ul>
-      <!-- li><a href="http://www.scotchmusic.com">ScotchMusic.com</a></li -->
-      <!-- li><a href="http://www.jtbairns.com">Jock Tamson's Bairns</a></li -->
       <li><a href="http://archive.org">The Internet Archive</a></li>
       <li><a href="http://creativecommons.org">Creative Commons</a></li>
       <li><a href="http://songbirdnest.com">Songbird player</a></li>
     </ul>
-    <p><a href="/links/">more links...</a></p>
+    <p><a href="/links/">more...</a></p>
     </div>
 
-    <div class="aside links"><a href="/contact/">Contact us</a> if you have any suggestions or material you'd like to contribute.
+    <div class="aside links">
+        <p><a href="/contact/">Contact us</a> if you have any suggestions or material you'd like to contribute.</p>
     </div>
 
     </div>
 </div>
 
 
-    <div id="footer">
-    <p>RareTunes Musical Laboratory Services, Scotland.</p>
-    </div>
+<div id="footer">
+    <p>Unless otherwise specified, content on this site is licensed under a <br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.</p>
+    <p>Code for RareTunes.org is now <a href="http://github.org/snowcloud/raretunes">open source</a>.</p>
+    <p>RareTunes Musical Laboratory Services, Scotland, Est. 2006</p>
+</div>
 
 
 {# {% block tracker %}<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script> #}

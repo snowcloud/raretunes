@@ -1,8 +1,12 @@
+from os import path as os_path
+
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.views.generic.simple import direct_to_template
 
-from os import path as os_path
+from contact_form.views import contact_form
+from scutils.forms import SCContactForm
 
 admin.autodiscover()
 
@@ -10,10 +14,11 @@ urlpatterns = patterns('',
     # Example:
     (r'^$', 'home.views.index'),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^contact/$', contact_form, { 'form_class': SCContactForm }, name='contact_form'),
+    url(r'^contact/sent/$', direct_to_template, { 'template': 'contact_form/contact_form_sent.html' },
+        name='contact_form_sent'),
 
-    # Uncomment the next line to enable the admin:
+
     (r'^admin/', include(admin.site.urls)),
 )
 

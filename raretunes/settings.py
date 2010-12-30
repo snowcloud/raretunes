@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
     'contact_form',
     'pagination',
+    'tagging',
     'home',
     
 )
