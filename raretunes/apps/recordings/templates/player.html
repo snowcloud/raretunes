@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="fiddle music, Scottish, traditional music archive, celtic music, Derek Hoy, Stuart Eydmann" />
+    <meta name="description" content="Raretunes.org player" />
+
+    <title>RareTunes: player</title>
+    <link rel="shortcut icon" type="image/ico" href="/media/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/media/js/yui/build/reset/reset-min.css" media="all" />
+    <script type="text/javascript" src="/media/js/swfobject.js"></script>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var flashObject = new FlashObject("/media/xspf_jukebox.swf","fm_xspf_jukebox","272","114","7","","","","","");
+            flashObject.addParam("wmode", "transparent");
+            flashObject.addVariable("skin_url","/media/MiniTunes/");
+            flashObject.addVariable("loadurl","/media/xspf_jukebox_vars.txt");
+            flashObject.addVariable("playlist_url","/recordings/playlist.xspf?l={{ sel_tracks }}");
+            flashObject.write("player");
+        });
+    </script>
+
+</head>
+<body style="background: #F0FFEE;"><div id='player'></div></body>
+</html>

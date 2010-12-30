@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load markup recordingtags %}
+
+{% block title %}{{ object.full_name }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" />
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/player.js"></script>
+
+<!-- <script type="text/javascript" src="/media/js/swfobject.js"></script>
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+script type="text/javascript" src="/media/js/player.js"></script>
+<script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script -->
+{% endblock %}
+
+{% block body %}id="performers"{% endblock %}
+
+{% block content %}
+
+<div class="box">
+    {% if object.pic %}<p><img class="pic" src="/media/{{ object.pic }}" alt="picture of {{ object.full_name }}"/></p>{% endif %}
+    <h1>{{ object.full_name }}</h1>
+    {% if object.year_of_birth or object.year_of_death %}<p>
+        {% if object.year_of_birth %}b. {{ object.year_of_birth }}&nbsp;&nbsp;&nbsp;{% endif %}
+        {% if object.year_of_death %}d. {{ object.year_of_death }}{% endif %}
+    </p>{% endif %}
+    
+        {{ object.note|textile }}
+    
+    <div class="info">
+    {% if object.url %}web: <ul class="tags"><li><a href="{{ object.url }}">{{ object.url }}</a></li></ul>{% endif %}
+    <br/>
+    tags: <ul class="tags">
+        {% for t in object.tags.all %}
+          <li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+        {% endfor %}
+    </ul>
+    </div>           
+</div>
+<br/>
+<div class="box"><h1>Recordings</h1>
+
+    {% if object.performers.all %}
+
+    <dl class="tracks">
+        {% for o in object.performers.all %}
+          {% if o.published %}
+
+           <dt>{{ o|track_link }}</dt>
+           <dd>tags: <ul class="tags">
+             {% for t in o.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
+             </ul></dd>
+           <dd class="track_button" id="{{ o.slug }}">
+             <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">information</a>
+           </dd>
+           <dd class="track_player" id="player_{{ o.slug }}">{{ o.play_url}}</dd>
+          {% endif %}
+        {% endfor %}
+    </dl>
+
+
+
+
+	{% comment %}
+    <div id="player"></div><div id="player_menu"></div>
+    <form action="" id="track_list">{% csrf_token %}
+      <ul>
+        {% for o in object.performers.all %}
+            {% if o.published %}
+            <li><!-- input type="checkbox" id="l{{ o.id }}" name="{{ o.id }}"/ --> 
+                {{ o|track_link }}
+                <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">[track details]</a>
+                  - <ul class="tags">
+                      {% for t in o.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
+                  </ul>
+                {# o|lofi_flash_stream_url:"<img src=\"/media/sound.gif\" alt=\"play recording (uses flash player)\"/>" #}
+                {# o|xspf_button #}
+            </li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    </form>
+	{% endcomment %}
+    {% else %}
+        <p>recordings to be added</p>
+    {% endif %}
+    <br>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load markup recordingtags audioplayer %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" />
+<!-- script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/player.js"></script -->
+
+<!-- script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script -->
+{% endblock %}
+
+{% block body %}id="recordings"{% endblock %}
+
+{% block content %}
+
+<div class="box"><h1>{{ object.title }}</h1>
+    <p>recorded: {{ object.recording_date|date:"F Y"|default:"-" }}</p>
+    
+    {{ object.note|textile }}
+
+    tags: <ul class="tags">
+        {% for t in object.tags.all %}
+          <li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+<div class="box"><h1>Performer links:</h1>
+
+    {% if object.performers.all %}
+
+      <ul>
+        {% for o in object.performers.all %}
+            <li><a href="/performers/{{ o.slug }}/">{{ o.full_name }}</a> -
+                <ul class="tags">{% for t in o.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}</ul>
+            </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+        <p>no performers noted.</p>
+    {% endif %}
+    
+</div>
+
+<div class="box"><h1>Files</h1>
+
+
+
+
+
+    <dl class="tracks">
+
+           <dt>{{ object|track_link }}</dt>
+           <dd><br>{% audioplayer file=object.play_url,width=256,height=24 %}</dd>
+    </dl>
+
+    <br>
+    <p>See the <a href="{{ object|archive_details_url }}">archive.org file page</a> for all available formats.</p>
+    
+    {{ object.licence_type|licence|safe }}
+
+    {% ifnotequal object.licence_type "public_domain" %}
+        <p>Please use these recordings as this license allows.<br/>
+        {% if object.attribution_url %}Attribution to <a href="{{ object.attribution_url }}">{{ object.attribution_url }}</a> and the performer(s).{% endif %}</p>
+    {% endifnotequal %}
+    
+</div>
+
+{% if object.music_img or object.abc %}
+<div class="box"><h1>Music</h1>
+    <p>
+        {% if object.abc %}<a href="/recordings/abc/{{ object.slug }}">abc</a>{% endif %} |
+        {% if object.music_img %}<a href="/media/{{ object.music_img }}">printed music</a>{% endif %}
+    </p>
+</div>
+{% endif %}
+
+{% endblock %}

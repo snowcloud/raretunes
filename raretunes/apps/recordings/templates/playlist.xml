@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist version="0" xmlns="http://xspf.org/ns/0/">
+<trackList>
+    {% for t in tracks %}
+    <track>
+        <location>{{ t.play_url }}</location>
+        <creator>{{ t.creator }}</creator>
+        <title>{{ t.title }}</title>
+        <meta>audio</meta>
+    </track>
+    {% endfor %}
+</trackList>
+</playlist>
