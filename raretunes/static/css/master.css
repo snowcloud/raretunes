@@ -15,6 +15,7 @@ body {
     min-width: 850px;
 	font: 14px/1.4 Georgia,Times,serif; 
 	background: #f0ffee url(../images/bg-main.jpg) no-repeat; }
+body.simple p { padding: 5px 10px; }
 	
 h1, h2, h3, h4 {
     font-family: Trebuchet MS,sans-serif;
@@ -22,6 +23,12 @@ h1, h2, h3, h4 {
 	color: #c74a14;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); 
 }
+h1 { font-size: 45px; }
+h2 { font-size: 36px; }
+h3 { font-size: 24px; }
+
+a, a:visited { border-bottom: 1px dotted #919191; }
+a:hover { background-color: #b5b7c9; }
 .media { text-align: center; background-color: #636370; padding: 12px; margin-bottom: 20px; }
 .media a, .media a:hover, .media a:visited { color: #fffeff; }
 
@@ -34,10 +41,10 @@ h1, h2, h3, h4 {
 #header { 
 	background: #202042 none repeat scroll 0 0;
 	color: white;
-	height: 3.4em;
+	heightx: 4.8em;
 	padding-top: 50px;	
-	position: relative; margin: 0 0 45px 6%; padding-bottom: 60px; }
-#header a, #header a:hover, #header a:visited { color: white; text-decoration: none; }
+	position: relative; padding-bottomx: 60px; border-right-style: none; border: 2px solid #d5d5d5; border-right-width: 0; margin: 0 0 20px 6%; }
+#header a, #header a:hover, #header a:visited { color: white; text-decoration: none; border-style: none; }
 #header img { 
 float: left; margin-top: -24px; }
 #header h1 { 
@@ -52,25 +59,20 @@ float: left; margin-top: -24px; }
 
 #header em {  }
 #headercontents {
-    xbottom: 0;
-    padding-leftx: 40%;
-    xposition: absolute;
-    xtext-align: right;
 	border-top: 2px solid #656787;
 	margin-top: 20px; }
 #sitenav  {
-	xbottom: 0;
-    padding-leftx: 270px; background-color: #464466; padding-top: 5px; padding-bottom: 10px; }
+	background-color: #464466; padding-top: 5px; padding-bottom: 10px; }
 #sitenav li { 
 	display: inline;
-	padding-rightx: 0em;
 }
 #sitenav a {
     font-size: 1.4em;
     padding: 0em 16px;
     font-weight: bold;
 }
-
+#sitenav a:hover { background-color: #f50; }
+#headercontents .search { float: right; top: -2.5em; position: relative; padding-right: 10px; }
 #usernav { background: #fffeff;
 	margin-top: 2.6em; margin-left: 40px; padding: 10px; }
 .rgba #usernav { background: rgba(255,254,255,0.4);}
@@ -80,12 +82,10 @@ float: left; margin-top: -24px; }
 }
 #usernav a, #usernav a:hover, #usernav a:visited  { color: #5e5e5e}
 
-#main { 
-	padding: 20px 260px 0 6%;
-	max-width: 735px;
-}
+#main {
+	max-width: 735px; background-color: #ffffff; margin-left: 6%; border: 1px solid #d5d5d5; border-right-style: none; padding: 0 260px 0 0; }
 .single #main {
-	padding: 20px 40px 0 6%;
+	padding: 0 40px 0 6%;
 	max-width: 935px;
  }
 
@@ -103,13 +103,12 @@ float: left; margin-top: -24px; }
     margin: 0; padding-top: 0.6em; }
     
 #pageintro a, #pageintro a:hover, #pageintro a:visited  { color: #325e90; text-decoration: none; }
-#home #pageintro { background: #fffeff url(../artists/agnes.jpg) no-repeat right center;
+#home #pageintro { background: #fffeff url(../artists/agnes.jpg) no-repeat right 10px;
 padding-right: 200px; }
 #maincontent {
     float: left;
     width: 89%; 
-    padding: 0 2.5% 40px 40px;
-}
+    padding: 0 2.5% 40px 40px;  }
 #sidebar { 
 	display: inline;
     float: right;
@@ -124,20 +123,22 @@ padding-right: 200px; }
 #sidebar .links a, #sidebar .links a:hover, #sidebar .links a:visited  {
 	color: #797979; text-decoration: none; xborder-bottom: 1px dotted #919191; }
 #sidebar .links li { border-bottom: 1px solid #eaeaea; padding-bottom: 10px; padding-top: 5px; }
+#maincontent .section { border: 1px solid #d5d5d5; }
 .article {
-	background-color: #f9f9f9; padding: 6px; }
-.article h3 { font-size: 24px; padding-bottom: 0.5em; }
+	background-color: #f9f9f9; padding: 6px;  }
+.article h1 { font-size: 28px; padding-bottom: 0.5em; }
+.article h2, .article h3 { font-size: 22px; padding-bottom: 0.5em; }
 .article p { line-height: 160%; padding-bottom: 1em; }
 .article a, .article a:hover, .article a:visited  { color: #325e90; text-decoration: none; }
 .article p a, .article p a:hover, .article p a:visited { border-bottom: 1px dotted #919191;}
 .article img { float: left; padding: 6px; }
-.aside {
-	padding-bottom: 36px; 
-}
+.article ul { list-style-type: disc; padding-left: 20px; padding-bottom: 10px; }
+.aside { border: 1px dotted #eaeaea; margin-bottom: 25px; padding: 5px; background-color: #f9f9f9; }
 .aside h3 {
     font-size: 22px;
 	xcolor: #5e5e5e;
 }
+quote { font-style: italic; color: #5e5e5e; }
 #footer {
 	background: #202042 none repeat scroll 0 0;
     border-top: 13px solid #f50;
@@ -150,7 +151,8 @@ padding-right: 200px; }
 .rgba #footerx { 
 	background: none repeat scroll 0 0 rgba(38, 38, 38, 0.85);
 }
-
+#footer a, #footer a:hover, #footer a:visited { color: white; text-decoration: none; border-bottom: 1px dotted #919191; }
+#footer a:hover { background-color: #c94213; }
 
 
 /* self-clear floats */

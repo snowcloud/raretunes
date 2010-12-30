@@ -8,3 +8,6 @@ PIL==1.1.7
 -e git+git://github.com/snowcloud/sc-utils.git#egg=sc-utils
 -e hg+http://bitbucket.org/ubernostrum/django-contact-form/#egg=django-contact-form
 django-pagination
+
+# boto
+# 
