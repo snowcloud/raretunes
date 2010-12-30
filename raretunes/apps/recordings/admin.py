@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shared_apps.recordings.models import Artist, Recording, ARCHIVE_METADATA
+from recordings.models import Artist, Recording, ARCHIVE_METADATA
 
 class ArtistAdmin(admin.ModelAdmin):
     ordering = ['last_name']

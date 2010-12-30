@@ -10,4 +10,5 @@ PIL==1.1.7
 django-pagination
 
 # boto
-# 
+# BeautifulSoup
+# pyarchive

@@ -8,6 +8,7 @@ from django.views.generic.simple import direct_to_template
 from contact_form.views import contact_form
 from scutils.forms import SCContactForm
 
+from recordings.models import Artist
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -18,6 +19,16 @@ urlpatterns = patterns('',
     url(r'^contact/sent/$', direct_to_template, { 'template': 'contact_form/contact_form_sent.html' },
         name='contact_form_sent'),
 
+    (r'^recordings/', include('recordings.urls')),
+
+    (r'^performers/$', 'django.views.generic.list_detail.object_list', 
+        dict(queryset=Artist.objects.all(), 
+        paginate_by=400,
+        template_name='performers_list.html' )),    
+    (r'^performers/(?P<slug>[^/]+)', 'django.views.generic.list_detail.object_detail', 
+        dict(queryset=Artist.objects.all(),
+        slug_field='slug',
+        template_name='performers_detail.html')),    
 
     (r'^admin/', include(admin.site.urls)),
 )

@@ -5,7 +5,7 @@
 from django.db import models
 from django.conf import settings
 
-from shared_apps.sitetags.models import SiteTag
+from tagging.fields import TagField
 #from shared_apps.recordings.ia_views import queue_metadata_update
 import datetime
 
@@ -33,7 +33,7 @@ class Artist(models.Model):
     url = models.URLField(blank=True)
     note = models.TextField(blank=True) 
     pic = models.ImageField(upload_to="artists", null=True, blank=True)
-    tags = models.ManyToManyField(SiteTag, null=True)
+    tags = TagField()
     date_entered = models.DateField(default=datetime.date.today)
 
     class Admin:
@@ -57,7 +57,7 @@ class Artist(models.Model):
     published_recordings = property(_get_published_recordings)
         
         
-from shared_apps.fulltext_search.models import SearchManager
+# from shared_apps.fulltext_search.models import SearchManager
 
 class PublishedRecordingManager(models.Manager):
     def get_query_set(self):
@@ -66,17 +66,6 @@ class PublishedRecordingManager(models.Manager):
 ARCHIVE_CHOICES = (('archive.org', 'archive.org'),)
 ARCHIVE_DEFAULT = 'archive.org'
 
-LICENCE_TYPES = (
-            ('by_2.5_scotland', 'Creative Commons, Attribution 2.5 UK: Scotland'),
-            ('by-nc_2.5_scotland', 'Creative Commons, Attribution-Noncommercial 2.5 UK: Scotland'),
-            ('by-nc-nd_2.5_scotland', 'Creative Commons, Attribution-Noncommercial-No Derivative Works 2.5 UK: Scotland'),
-            ('by-nc-sa_2.5_scotland', 'Creative Commons, Attribution-Noncommercial-Share Alike 2.5 UK: Scotland'),
-            ('by-nd_2.5_scotland', 'Creative Commons, Attribution-No Derivative Works 2.5 UK: Scotland'),
-            ('by-sa_2.5_scotland', 'Creative Commons, Attribution-Share Alike 2.5 UK: Scotland'),
-            ('by-sa_3.0', 'Creative Commons, Attribution-Share Alike 3.0'),
-            ('public_domain', 'public domain'),
-        )
-LICENCE_TYPES_DEFAULT = 'by-nc-sa_2.5_scotland'
 
 SQS_STATUS = (('xxx', 'xxx'),)
 
@@ -102,11 +91,11 @@ class Recording(models.Model):
     composers = models.ManyToManyField(Artist, related_name='composers', null=True, blank=True)
     #published = models.BooleanField(default=True)
     note = models.TextField(blank=True, help_text='a link to RareTunes will be added for Archive.org') 
-    tags = models.ManyToManyField(SiteTag, null=True)
+    tags = TagField()
     other_keywords = models.CharField(max_length=84, null=True, blank=True, help_text='comma separated')
     archive = models.CharField(max_length=36, choices=ARCHIVE_CHOICES, default=ARCHIVE_DEFAULT)
     licence_type = models.CharField(
-        max_length=36, choices=LICENCE_TYPES, default=LICENCE_TYPES_DEFAULT)
+        max_length=36, choices=settings.LICENCE_TYPES, default=settings.LICENCE_TYPES_DEFAULT)
     attribution_url=models.URLField(null=True, default='http://raretunes.org')
     music_img = models.ImageField(upload_to="dots", null=True, blank=True)
     abc = models.TextField(null=True, blank=True)
@@ -149,7 +138,7 @@ class Recording(models.Model):
     published_recordings = PublishedRecordingManager()
     # Use a SearchManager for retrieving objects,
     # and tell it which fields to search. 
-    searcher = SearchManager(('title', 'note'))
+    # searcher = SearchManager(('title', 'note'))
     
     class Admin:
         pass
@@ -210,7 +199,7 @@ class Recording(models.Model):
         return 'http://creativecommons.org/licenses/%s/' % self.licence_type.replace('_', '/')
 
     def make_subjects(self):
-        _subjects = '%s; %s' % ('; '.join([tag.name for tag in self.tags.all()]), settings.DEF_TAGS)
+        _subjects = '%s; %s' % ('; '.join(list(self.tags.all())), settings.DEF_TAGS)
         if self.other_keywords:
             others = '; '.join([kw.strip() for kw in self.other_keywords.split(',')])
             if others:

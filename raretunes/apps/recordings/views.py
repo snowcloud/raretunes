@@ -4,21 +4,21 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import Context, loader
-from shared_apps.recordings.models import Recording
+from recordings.models import Recording
 
-def search(request):
-    objects = None
-    error_msg = ''
-    terms = request.REQUEST.get('terms', '').strip()
-    if terms == '':
-        error_msg = 'enter some text to search for in the box, and try again.'
-    else:
-        objects = Recording.searcher.search(terms)
-        if not objects:
-            #try a boolean seach instead
-            objects = Recording.published_recordings.filter(note__search=terms)
-        
-    return render_to_response('recordings/search_results.html', { 'terms': terms, 'error_msg': error_msg, 'objects': objects })
+# def search(request):
+#     objects = None
+#     error_msg = ''
+#     terms = request.REQUEST.get('terms', '').strip()
+#     if terms == '':
+#         error_msg = 'enter some text to search for in the box, and try again.'
+#     else:
+#         objects = Recording.searcher.search(terms)
+#         if not objects:
+#             #try a boolean seach instead
+#             objects = Recording.published_recordings.filter(note__search=terms)
+#         
+#     return render_to_response('recordings/search_results.html', { 'terms': terms, 'error_msg': error_msg, 'objects': objects })
 
 def abc(request, slug):
     o = get_object_or_404(Recording.published_recordings, slug=slug)
