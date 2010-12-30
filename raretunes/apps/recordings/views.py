@@ -28,7 +28,7 @@ def abc(request, slug):
     return HttpResponse(o.abc, mimetype="text")
 
 def playlist(request):
-    t = loader.get_template('playlist.xml')
+    t = loader.get_template('recordings/playlist.xml')
     tracks = []
     
     #l = request.GET.get('l', 'nope')
@@ -45,5 +45,5 @@ def playlist(request):
 
 def player(request):
     c = Context({ 'sel_tracks': request.GET.get('l', '') })
-    return render_to_response('player.html', c)
+    return render_to_response('recordings/player.html', c)
 

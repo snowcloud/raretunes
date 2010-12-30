@@ -24,11 +24,11 @@ urlpatterns = patterns('',
     (r'^performers/$', 'django.views.generic.list_detail.object_list', 
         dict(queryset=Artist.objects.all(), 
         paginate_by=400,
-        template_name='performers_list.html' )),    
+        template_name='recordings/performers_list.html' )),    
     (r'^performers/(?P<slug>[^/]+)', 'django.views.generic.list_detail.object_detail', 
         dict(queryset=Artist.objects.all(),
         slug_field='slug',
-        template_name='performers_detail.html')),    
+        template_name='recordings/performers_detail.html')),    
 
     (r'^admin/', include(admin.site.urls)),
 )
