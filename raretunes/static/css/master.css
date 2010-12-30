@@ -1,0 +1,164 @@
+/* 
+Title:		Master styles for screen media
+Author: 	dan@simplebits.com
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body { 
+	color: #212121;
+	margin-top: 30px;
+    min-width: 850px;
+	font: 14px/1.4 Georgia,Times,serif; 
+	background: #f0ffee url(../images/bg-main.jpg) no-repeat; }
+	
+h1, h2, h3, h4 {
+    font-family: Trebuchet MS,sans-serif;
+	font-weight: bold;
+	color: #c74a14;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); 
+}
+.media { text-align: center; background-color: #636370; padding: 12px; margin-bottom: 20px; }
+.media a, .media a:hover, .media a:visited { color: #fffeff; }
+
+/* positions skip nav off screen until tabbed into 
+	
+*/
+#skip a, #skip a:hover, #skip a:visited { position:absolute; left:0px; top:-500px; width:1px; height:1px; overflow:hidden; }
+#skip a:active, #skip a:focus { position:static; width:auto; height:auto; }
+
+#header { 
+	background: #202042 none repeat scroll 0 0;
+	color: white;
+	height: 3.4em;
+	padding-top: 50px;	
+	position: relative; margin: 0 0 45px 6%; padding-bottom: 60px; }
+#header a, #header a:hover, #header a:visited { color: white; text-decoration: none; }
+#header img { 
+float: left; margin-top: -24px; }
+#header h1 { 
+	display: inline;
+	floatx: left;
+	font-size: 45px;
+	letter-spacing: -2px;
+	text-decoration: none;
+	text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4); 
+	padding: 0 30px 20px 20px;
+	margin: 0; color: #ffffff; }
+
+#header em {  }
+#headercontents {
+    xbottom: 0;
+    padding-leftx: 40%;
+    xposition: absolute;
+    xtext-align: right;
+	border-top: 2px solid #656787;
+	margin-top: 20px; }
+#sitenav  {
+	xbottom: 0;
+    padding-leftx: 270px; background-color: #464466; padding-top: 5px; padding-bottom: 10px; }
+#sitenav li { 
+	display: inline;
+	padding-rightx: 0em;
+}
+#sitenav a {
+    font-size: 1.4em;
+    padding: 0em 16px;
+    font-weight: bold;
+}
+
+#usernav { background: #fffeff;
+	margin-top: 2.6em; margin-left: 40px; padding: 10px; }
+.rgba #usernav { background: rgba(255,254,255,0.4);}
+#usernav li { 
+	display: inline;
+	padding-right: 2em;
+}
+#usernav a, #usernav a:hover, #usernav a:visited  { color: #5e5e5e}
+
+#main { 
+	padding: 20px 260px 0 6%;
+	max-width: 735px;
+}
+.single #main {
+	padding: 20px 40px 0 6%;
+	max-width: 935px;
+ }
+
+#pageintro {
+	background-color: #fcfeff; margin: 0 -224px 50px 40px; padding: 8px; }
+#pageintro h1 {
+    font-size: 36px;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+#pageintro p {
+    font-family: georgia;
+    font-size: 20px;
+    font-style: italic;
+    margin: 0; padding-top: 0.6em; }
+    
+#pageintro a, #pageintro a:hover, #pageintro a:visited  { color: #325e90; text-decoration: none; }
+#home #pageintro { background: #fffeff url(../artists/agnes.jpg) no-repeat right center;
+padding-right: 200px; }
+#maincontent {
+    float: left;
+    width: 89%; 
+    padding: 0 2.5% 40px 40px;
+}
+#sidebar { 
+	display: inline;
+    float: right;
+    margin-right: -224px;
+    width: 224px;
+}
+#sidebar .form {
+	background-color: #d8e1e7;
+	padding: 6px 6px 26px; margin-bottom: 26px; }
+#sidebar .form a, #sidebar .form a:hover, #sidebar .form a:visited{ color: #5e5e5e; text-decoration: none; border-bottom: 1px dotted #919191; }
+
+#sidebar .links a, #sidebar .links a:hover, #sidebar .links a:visited  {
+	color: #797979; text-decoration: none; xborder-bottom: 1px dotted #919191; }
+#sidebar .links li { border-bottom: 1px solid #eaeaea; padding-bottom: 10px; padding-top: 5px; }
+.article {
+	background-color: #f9f9f9; padding: 6px; }
+.article h3 { font-size: 24px; padding-bottom: 0.5em; }
+.article p { line-height: 160%; padding-bottom: 1em; }
+.article a, .article a:hover, .article a:visited  { color: #325e90; text-decoration: none; }
+.article p a, .article p a:hover, .article p a:visited { border-bottom: 1px dotted #919191;}
+.article img { float: left; padding: 6px; }
+.aside {
+	padding-bottom: 36px; 
+}
+.aside h3 {
+    font-size: 22px;
+	xcolor: #5e5e5e;
+}
+#footer {
+	background: #202042 none repeat scroll 0 0;
+    border-top: 13px solid #f50;
+    clear: both;
+    color: #d5d5d5;
+    height: 1%;
+    margin: 45px 0 0 6%;
+    padding: 25px 14% 50px 64px;
+    position: relative;}
+.rgba #footerx { 
+	background: none repeat scroll 0 0 rgba(38, 38, 38, 0.85);
+}
+
+
+
+/* self-clear floats */
+
+.group:after {
+	content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+    }

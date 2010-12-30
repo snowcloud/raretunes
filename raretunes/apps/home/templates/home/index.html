@@ -1,16 +1,57 @@
 {% extends "base.html" %}
-<!-- {% load markup %} -->
+{% load markup  %}
+{# {% load markup sitevars webnews %} #}
 
-<!-- {% block title %}{{ flatpage.title }}{% endblock %}
+{% block title %}home{% endblock %}
 
-{% block body %}id="{{ flatpage.url|slice:"1:-1" }}"{% endblock %} -->
+{% block head_extra %}<script type="text/javascript" src="/media/ss/swfobject.js"></script>{% endblock %}
 
+{% block body_id %}id="home"{% endblock %}
+
+{% block pageintro %}
+<h1>An archive of Scottish music</h1>
+<p>Recordings range from near-studio quality to crowded and noisy house sessions, from digital media to old bits of tape, vinyl and 78s.</p>
+<p>From straight-from-the-heart stuff by musicians who never recorded commercially, to old material performed by the stars of the day. <a href="/faq/">Read more...</a></p>
+
+{% endblock%}
 {% block content %}
 
-<div class="box">
-blah
+{# <div id="monoSlideshow" class="pic"><img  src="/static/artists/agnes.jpg" alt="agnes with mandolin"/></div> #}
+{#  #}
+{# <script type="text/javascript"> #}
+{#     // <![CDATA[ #}
+{#     var so = new SWFObject("media/ss/monoslideshow.swf", "SOmonoSlideshow", "200", "272", "7", "#ffffff"); #}
+{#     so.addParam("base", "media/ss/"); #}
+{#     so.addVariable("showLogo", "false"); #}
+{#     so.write("monoSlideshow"); #}
+{#     // ]]> #}
+{# </script> #}
+
+
+
+<div class="article"><h1>Hear the tunes</h1>
+
+<p>You can listen to all the music on this site:</p>
+<ul>
+<li>use the jukebox by selecting from lists (needs Flash)</li>
+<li>go into the recording and go to its page on <a href="http://archive.org">archive.org</a></li>
+<li>use the <a href="http://songbirdnest.com">Songbird web player</a></li>
+</ul>
+<p>We show links to MP3 files in the recording lists, so you can use other software to download- try the <a href="http://songbirdnest.com">Songbird web player</a> which will let you download into your own library or make playlists of your favourite <em>Rare</em>Tunes.</p>
+</div>
+    
+<div class="article"><h1>Creative Commons</h1>
+<a href="http://archive.org"><img class="pic" src="static/images/ia_logo.jpg" alt="Archive.org logo"/></a>
+<p><span class="quote">"Creative Commons provides free tools that let authors, scientists, artists, and educators easily mark their creative work with the freedoms they want it to carry."</span></p>
+
+<p>Most of the recordings here are made available under <a href="http://creativecommons.org/">Creative Commons</a> licences, allowing you to copy them freely for your enjoyment- most only restrict commercial use without getting the owner's agreement.</p>
+
+<p>Our media files are stored on <a href="http://archive.org/">The Internet Archive</a> </p>
 </div>
 
+<div class="article"><h1>other</h1>
+    <p>In modern Scots, 'rare' is often used to mean something really enjoyable. The <a href="http://www.dsl.ac.uk/dsl/">Dictionary of the Scots Language</a> quotes Ian Rankin in 'Black and Blue' (1999) writing: <span class="quote">"Jings, but it was rare to be home."</span></p>
+    <p>The <em>rare</em> tunes here range  If you would like to contribute, then please <a href="/contact/">get in touch</a>. It's being developed and maintained by <a href="/performers/derek-hoy/">Derek Hoy</a> and <a href="/performers/eydmann">Stuart Eydmann</a>. </p>
+</div>
 
 {% endblock %}
-

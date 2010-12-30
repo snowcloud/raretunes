@@ -2,24 +2,37 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="keywords" content="EngineClub, engine club, ALISS, NHS Scotland">
-	<meta name="description" content="Home of the EngineClub">
+	<meta name="keywords" content="fiddle music, Scottish, traditional music archive, celtic music, Derek Hoy, Stuart Eydmann">
+	<meta name="description" content="Archive of Scottish traditional music">
 
-	<title>engineclub- {% block title %}{% endblock %}</title>
-	<link rel="shortcut icon" type="image/ico" href="/static/favicon.ico">
+	<title>RareTunes: {% block title %}{% endblock %}</title>
+    <script type='text/javascript' src='static/js/modernizr-1.6.min.js'></script>
+    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
+
+	<link rel="shortcut icon" type="image/ico" href="/static/favicon.ico" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="/static/css/screen.css" />
 	<!--[if IE 6]>
 	  <link href="/static/css/ie6.css" media="screen, projection" rel="stylesheet" type="text/css" />
 	<![endif]-->
+    <script type="text/javascript">
+      $('document').ready(function(){
+        $('.js .media').embedly({
+          maxWidth: 450,
+          wmode: 'transparent',
+          methodx: 'before'
+        });
+      });
+    </script>   
 	{% block head_extra %}{% endblock %}
-</head><body {% block body %}{% endblock %}>
+</head>
+<body {% block body_id %}{% endblock %} class="{% block body_class %}{% endblock %}">
 
-<div id="container">
     <div id="header">
-        <h1>rareTunes</h1>
-    </div>
-    <div id="navigation">
-    <ul>
+        <img src="/static/images/dug_02.jpg"></img>
+        <h1><em>rare</em>Tunes</h1>
+    <div id="headercontents">
+    <ul id="sitenav">
         <li class="home"><a href="/">home</a></li>
         <li class="recordings"><a href="/recordings/">recordings</a></li>
         <li class="performers"><a href="/performers/">performers</a></li>
@@ -28,19 +41,21 @@
         <li class="faq"><a href="/faq/">FAQ</a></li>
 
     </ul>
+</div>
+</div>
+
+    <div id="main" class="group">
+    <div id="pageintro" class="group">
+    {% block pageintro %}{% endblock%}
     </div>
 
-
-    <div id="content">
-
-    {% block content %}
-    {% endblock%}
-    
+    <div id="maincontent">
+    {% block content %}{% endblock%}
     </div>
 
-    <div id="subcontent">
+    <div id="sidebar">
 
-    <div class="small box">
+    <div class="aside links">
         <strong>Search recordings:</strong>
         <form action="http://www.google.com/cse" id="searchbox_014668001863459659633:267jrzaumjs">
         <input type="hidden" value="014668001863459659633:267jrzaumjs" name="cx"/>
@@ -62,7 +77,32 @@
         </form>
     </div>
     {% endcomment %}
+    <div class="aside links">
+            <h3>Latest recordings</h3>
+            <ul>
 
+              <li><a href="/recordings/saved-his-grace/">Saved by his Grace</a></li>
+
+              <li><a href="/recordings/swing-low/">Swing low</a></li>
+
+              <li><a href="/recordings/im-trampin/">I'm a trampin'</a></li>
+
+              <li><a href="/recordings/thou-art-my-rock/">Thou art my rock</a></li>
+
+              <li><a href="/recordings/ballad-johnny-ramensky/">Ballad of Johnny Ramensky</a></li>
+
+              <li><a href="/recordings/day-we-went-rothesay-o/">Day we went to Rothesay O</a></li>
+
+              <li><a href="/recordings/land-o-leal/">Land o' the leal</a></li>
+
+              <li><a href="/recordings/my-ain-countrie/">My Ain Countrie</a></li>
+
+              <li><a href="/recordings/rigs-o-rye/">Rigs o rye</a></li>
+
+              <li><a href="/recordings/now-westlin-winds-and-slaughtring-guns/">Now westlin winds and slaught'ring guns</a></li>
+
+            </ul>
+            </div>
     {# {% get_latest recordings 10 as latest_recordings %} #}
     {#      #}
     {# {% if latest_recordings %} #}
@@ -76,6 +116,24 @@
     {#     </div> #}
     {# {% endif %} #}
     {#  #}
+    <div class="aside links">
+            <h3>Latest artists</h3>
+            <ul>
+
+              <li><a href="/performers/william-macewan/">William MacEwan</a></li>
+
+              <li><a href="/performers/john-maccoll/">John MacColl</a></li>
+
+              <li><a href="/performers/rev-d-duncan-mcneill/">Rev D. (Duncan) McNeill</a></li>
+
+              <li><a href="/performers/edward-machugh/">Edward MacHugh</a></li>
+
+              <li><a href="/performers/stuart-macgregor/">Stuart Macgregor</a></li>
+
+              <li><a href="/performers/bob-and-bert/"> Bob and Bert</a></li>
+
+            </ul>
+            </div>
     {# {% get_latest artists 6 as latest_artists %} #}
     {#      #}
     {# {% if latest_artists %} #}
@@ -90,7 +148,7 @@
     {# {% endif %} #}
     
 
-    <div class="small box">
+    <div class="aside links">
     <strong>Links: </strong>
     <ul>
       <!-- li><a href="http://www.scotchmusic.com">ScotchMusic.com</a></li -->
@@ -102,16 +160,17 @@
     <p><a href="/links/">more links...</a></p>
     </div>
 
-    <div class="small box"><a href="/contact/">Contact us</a> if you have any suggestions or material you'd like to contribute.</div>
+    <div class="aside links"><a href="/contact/">Contact us</a> if you have any suggestions or material you'd like to contribute.
+    </div>
 
     </div>
+</div>
 
 
     <div id="footer">
     <p>RareTunes Musical Laboratory Services, Scotland.</p>
     </div>
 
-</div>
 
 {# {% block tracker %}<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script> #}
 {# <script type="text/javascript">_uacct = "UA-563964-3";urchinTracker();</script>{% endblock %} #}
