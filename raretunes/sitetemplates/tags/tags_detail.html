@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load comments markup recordingtags %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" />
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/player.js"></script>
+
+<!-- script type="text/javascript" src="/media/js/swfobject.js"></script>
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/player.js"></script>
+<script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script -->
+{% endblock %}
+
+{% block body %}id="tags_nav"{% endblock %}
+
+{% block content %}
+
+<div class="box">
+
+<h1>{{ object.name|capfirst }}</h1>
+
+{{ object.description|textile }}
+
+    {% if object.artist_set.all %}
+    
+    <h2>Performers: </h2>
+        <div id="player"></div><div id="player_menu"></div>
+        <form action="" id="track_list">
+    
+          <ul>
+            {% for artist in object.artist_set.all %}
+                <li><a href="/performers/{{ artist.slug }}/">{{ artist.full_name }}</a>
+                  {% ifnotequal artist.tags.count 1 %}<small>- also under:</small>
+                    <ul class="tags">
+                    {% for t in artist.tags.all %}
+                      {% ifnotequal object t %}
+                                <li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a></li>
+                            {% endifnotequal %}
+                    {% endfor %}
+                    </ul>
+                  {% endifnotequal %}
+              
+                  {% if artist.performers.all %}
+
+                    <dl class="tracks">
+                        {% for o in artist.performers.all %}
+                          {% if o.published %}
+
+                           <dt>{{ o|track_link }}</dt>
+                           <dd>tags: <ul class="tags">
+                             {% for t in o.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
+                             </ul></dd>
+                           <dd class="track_button" id="{{ o.slug }}">
+                             <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">information</a>
+                           </dd>
+                           <dd class="track_player" id="player_{{ o.slug }}">{{ o.play_url}}</dd>
+                          {% endif %}
+                        {% endfor %}
+                    </dl>
+
+                    {% comment %}
+                    <ul>
+                      {% for o in artist.performers.all %}
+                        {% if o.published %}
+                          <li><!-- input type="checkbox" id="l{{ o.id }}" name="{{ o.id }}"/ -->
+                              {{ o|track_link }}
+                              <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">[track details]</a>
+                              {# o|lofi_flash_stream_url:"<img src=\"/media/sound.gif\" alt=\"play recording (uses flash player)\"/>" #}
+                              {# o|xspf_button #}
+                          </li>
+                          {% endif %}
+                      {% endfor %}
+                    </ul>
+                    {% endcomment %}
+                  {% else %}
+                      <p>recordings to be added</p>
+                  {% endif %}
+                  <br><br>
+              
+              
+              
+              
+                </li>
+            {% endfor %}
+          </ul>
+      </form>
+    {% else %}
+    <p>No performers found for this.</p>
+    {% endif %}
+
+
+    {% if object.recording_set.all %}
+    <h2>All Recordings: </h2>
+      <ul>
+        {% for o in object.recording_set.all %}
+            {% if o.published %}
+            <li>{{ o|track_link }} - {% for p in o.performers.all %}<a href="/performers/{{ p.slug }}/">{{ p.full_name }}</a>{% if not forloop.last%}, {% endif %}{% endfor %}
+              {% ifnotequal o.tags.count 1 %}<small>&nbsp; also under:</small>
+                <ul class="tags">
+                {% for t in o.tags.all %}
+                  {% ifnotequal object t %}
+                    <li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last%}, {% endif %}</li>
+                  {% endifnotequal %}
+                {% endfor %}
+                </ul>
+              {% endifnotequal %}
+            {# o|lofi_flash_stream_url:"<img src=\"/media/sound.gif\" alt=\"play recording (uses flash player)\"/>" #}
+            </li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -143,6 +143,25 @@ LICENCE_TYPES = (
         )
 LICENCE_TYPES_DEFAULT = 'by-nc-sa_2.5_scotland'
 
+# IMPORTANT:    THE FOLLOWING SETTINGS ARE USED TO ACCESS AN AMAZON ACCOUNT
+#               FOR S3 STORAGE AND SQS QUEUES USED FOR UPLOADING PROCESS
+#               YOU MUST FILL IN THESE SETTINGS WITH YOUR OWN VALUES
+
+# dict of Internet Archive accounts you want to use
+IA_UPLOADERS = {
+    # 'you@example.com': 'password' ,
+}
+DEF_IA_UPLOADER = '' # eg 'you@example.com'
+# queue names for Amazon SQS
+Q_RT_CREATE = ''
+Q_RT_PUBLISH = ''
+Q_RT_CHECKIN = ''
+Q_RT_UPDATE_METADATA  = ''
+MP3_TEMP_PATH = '/path/to/folder/'
+AWS_U = 'your-amazon-user-key'
+AWS_K = 'your-amazon-secret-key'
+AWS_BUCKET = 'amazon.bucket.name'
+
 
 
 # override any of the above in your own settings_local.py

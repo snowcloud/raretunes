@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block title %}Tags{% endblock %}
+
+{% block body %}id="tags_nav"{% endblock %}
+
+{% block content %}
+
+<div class="box"><h1>Tags</h1>
+
+    <p>Performers and recordings are 'tagged' with these keywords:</p>
+
+    {% if object_list %}
+      <ul>
+        {% for object in object_list %}
+            <li><a href="/tags/{{ object.slug }}/">{{ object.name }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+        <p>No tags found.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

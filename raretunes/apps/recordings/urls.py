@@ -26,4 +26,4 @@ urlpatterns = patterns('',
         dict(queryset=Recording.published_recordings.all(),
         slug_field='slug',
         template_name='recordings/recordings_detail.html')),    
-    )
+)

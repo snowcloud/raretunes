@@ -1,14 +1,16 @@
-Django>=1.2
-# South
-django-tagging
-textile
-docutils
-PIL==1.1.7
-
--e git+git://github.com/snowcloud/sc-utils.git#egg=sc-utils
--e hg+http://bitbucket.org/ubernostrum/django-contact-form/#egg=django-contact-form
-django-pagination
+# Django>=1.2
+# # South
+# django-tagging
+# textile
+# docutils
+# PIL==1.1.7
+# 
+# -e git+git://github.com/snowcloud/sc-utils.git#egg=sc-utils
+# -e hg+http://bitbucket.org/ubernostrum/django-contact-form/#egg=django-contact-form
+# django-pagination
 
 # boto
 # BeautifulSoup
-# pyarchive
+# # pyarchive
+# # this has no setup.py so pip can't install
+# # -e svn+http://django-audioplayer.googlecode.com/svn/trunk/#egg=django-audioplayer
