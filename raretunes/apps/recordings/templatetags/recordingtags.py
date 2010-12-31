@@ -1,9 +1,22 @@
 from django import template
 from django.conf import settings
 from django.utils.safestring import mark_safe
+from tagging.models import Tag
 
 register = template.Library()
 
+
+@register.inclusion_tag('recordings/tags_display.html')
+def show_tags_nolabel(object):
+    return {'tag_list': Tag.objects.get_for_object(object), 'label': False}
+
+@register.inclusion_tag('recordings/tags_display.html')
+def show_tags(object):
+    return {'tag_list': Tag.objects.get_for_object(object), 'label': True}
+
+@register.inclusion_tag('recordings/recording_player.html')
+def show_player(object):
+    return {'object': object }
 
 @register.filter
 def track_link(value):

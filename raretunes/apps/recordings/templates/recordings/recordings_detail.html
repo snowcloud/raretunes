@@ -16,7 +16,7 @@
 
 {% block content %}
 
-<div class="box"><h1>{{ object.title }}</h1>
+<div class="article"><h1>{{ object.title }}</h1>
     <p>recorded: {{ object.recording_date|date:"F Y"|default:"-" }}</p>
     
     {{ object.note|textile }}
@@ -29,7 +29,7 @@
 
 </div>
 
-<div class="box"><h1>Performer links:</h1>
+<div class="article"><h1>Performer links:</h1>
 
     {% if object.performers.all %}
 
@@ -46,7 +46,7 @@
     
 </div>
 
-<div class="box"><h1>Files</h1>
+<div class="article"><h1>Files</h1>
 
 
 
@@ -71,7 +71,7 @@
 </div>
 
 {% if object.music_img or object.abc %}
-<div class="box"><h1>Music</h1>
+<div class="article"><h1>Music</h1>
     <p>
         {% if object.abc %}<a href="/recordings/abc/{{ object.slug }}">abc</a>{% endif %} |
         {% if object.music_img %}<a href="/media/{{ object.music_img }}">printed music</a>{% endif %}

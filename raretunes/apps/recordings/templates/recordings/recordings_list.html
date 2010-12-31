@@ -5,62 +5,48 @@
 {% block title %}recordings{% endblock %}
 
 {% block head_extra %}
-<link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" />
-<script type="text/javascript" src="/media/js/jquery.js"></script>
-<script type="text/javascript" src="/media/js/player.js"></script>
+{# <link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" /> #}
+{# <script type="text/javascript" src="/media/js/jquery.js"></script> #}
+{# <script type="text/javascript" src="/media/js/player.js"></script> #}
 
-<!-- script type="text/javascript" src="/media/js/swfobject.js"></script>
-<script type="text/javascript" src="/media/js/player.js"></script -->
-<!-- script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script -->
+{# <!-- script type="text/javascript" src="/media/js/swfobject.js"></script> #}
+{# <script type="text/javascript" src="/media/js/player.js"></script --> #}
+{# <!-- script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script --> #}
+<script type="text/javascript" src="/static/js/audio-player.js"></script>  
+<script type="text/javascript">  
+    AudioPlayer.setup("/static/js/player.swf", {
+        width: 290  
+    });  
+</script>
 {% endblock %}
 
 {% block body %}id="recordings"{% endblock %}
 
 {% block content %}
 
-<div class="box"><h1>Recordings</h1>
+<div class="article"><h1>Recordings</h1>
 <p>The recordings range from near-studio quality to crowded and noisy house sessions, from digital media to old bits of tape to 78 rpm discs.</p>
 </div>
 
-<div class="box"><h1>Index</h1>
+<div class="article"><h1>Index</h1>
 
     {% autopaginate object_list 25 %}
     {% if object_list %}
     <div id="player"></div><div id="player_menu"></div>
     <form action="" id="track_list">{% csrf_token %}
-       <dl class="tracks">
+       <dl class="recording">
            {% paginate %}
            
            {% for object in object_list %}
 
               <dt>{{ object|track_link }}</dt>
-              <dd>performers: {% for p in object.performers.all %}<a href="/performers/{{ p.slug }}/">{{ p.full_name }}</a>{% if not forloop.last%}, {% endif %}{% endfor %}</dd>
-              <dd>tags: <ul class="tags">
-                {% for t in object.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
-                </ul></dd>
-              <dd class="track_button" id="{{ object.slug }}">
-                <a href="/recordings/{{ object.slug }}/" alt="mp3 file" class="small">information</a>
-              </dd>
-             <dd class="track_player" id="player_{{ object.slug }}">{{ object.play_url}}</dd>
-             {% endfor %}
+              <dd>performers: {% for p in object.performers.all %}<a href="/performers/{{ p.slug }}/">{{ p.full_name }}</a>{% if not forloop.last%}, {% endif %}{% endfor %} 
+                [<a href="/recordings/{{ object.slug }}/" alt="mp3 file" class="small">more information</a>]</dd>
+              <dd>{% show_tags object %}</dd>
+             <dd>{% show_player object %}</dd>
+         {% endfor %}
        </dl>
 
-           {% comment %}
-           <ul class="tracks">
-               {% for object in object_list %}
-                <li><!-- input type="checkbox" id="l{{ object.id }}" name="{{ object.id }}"/ -->
-                    {{ object|track_link }}  <a href="/recordings/{{ object.slug }}/" alt="mp3 file" class="small">[track details]</a> -<br>
-                     {% for p in object.performers.all %}<a href="/performers/{{ p.slug }}/">{{ p.full_name }}</a>{% if not forloop.last%}, {% endif %}{% endfor %}
-                    
-                    - <ul class="tags">
-                    {% for t in object.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
-                    </ul><br><br>
-                    {# % audioplayer file=object.play_url % #}
-                    {# object|lofi_flash_stream_url:"<img src=\"/media/sound.gif\" alt=\"play recording (uses flash player)\"/>" #}
-                </li>
-
-             {% endfor %}
-           {% endcomment %}
     </form>
     <p>&nbsp;</p>
     {% paginate %}

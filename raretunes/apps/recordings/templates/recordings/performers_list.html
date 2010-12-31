@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load markup sitevars %}
+{% load markup sitevars recordingtags tagging_tags %}
 
 {% block title %}performers{% endblock %}
 
@@ -7,17 +7,17 @@
 
 {% block content %}
 
-<div class="box"><h1>Performers</h1>
+<div class="article"><h1>Performers</h1>
 <p>Where possible, the permission of performers has been obtained before making these recordings available. If you have any questions about a recording, please contact us.</p>
 </div>
 
-<div class="box"><h1>Index</h1>
+<div class="article"><h1>Index</h1>
 
     {% if object_list %}
         <ul>
             {% for object in object_list %}
                 <li><a href="/performers/{{ object.slug }}">{{ object }}</a> -
-                    <ul class="tags">{% for t in object.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}</ul>
+                    {% show_tags_nolabel object %}
                 </li>
             {% endfor %}
         </ul>

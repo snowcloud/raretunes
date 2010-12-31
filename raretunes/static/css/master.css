@@ -14,7 +14,7 @@ body {
 	margin-top: 30px;
     min-width: 850px;
 	font: 14px/1.4 Georgia,Times,serif; 
-	background: #f0ffee url(../images/bg-main.jpg) no-repeat; }
+	background: #f0ffee none no-repeat; }
 body.simple p { padding: 5px 10px; }
 	
 h1, h2, h3, h4 {
@@ -128,17 +128,62 @@ padding-right: 200px; }
 	background-color: #f9f9f9; padding: 6px;  }
 .article h1 { font-size: 28px; padding-bottom: 0.5em; }
 .article h2, .article h3 { font-size: 22px; padding-bottom: 0.5em; }
-.article p { line-height: 160%; padding-bottom: 1em; }
+.article p { line-height: 160%; padding-bottom: 1em; margin-bottom: 1em; }
 .article a, .article a:hover, .article a:visited  { color: #325e90; text-decoration: none; }
 .article p a, .article p a:hover, .article p a:visited { border-bottom: 1px dotted #919191;}
-.article img { float: left; padding: 6px; }
+.article img { float: right; padding: 6px; }
 .article ul { list-style-type: disc; padding-left: 20px; padding-bottom: 10px; }
+.article .info { background-color: #eaecec; padding: 10px 20px; margin: 10px; }
+
+.article ul.tags { margin: 0pt; padding: 0pt; display: inline; font-size: 90%; color: #330062; list-style-type: none; list-style-image: none; list-style-position: outside; }
+.article ul.tags li { margin: 0pt; padding: 0pt; background: transparent none repeat; display: inline; list-style-type: none; }
+.article ul.tags li + li:before {
+  content: ", ";
+  margin-left: -0.35em;
+}
+.article ul.tags li a { border-color: rgb(204, 204, 153); color: #888899; }
+.article ul.tags li a:hover { color: rgb(255, 255, 255); background-color: #888899; }
+
+.recording dt {
+  background: url(/static/images/notes.gif) no-repeat left 1em;
+  padding-left: 20px;
+  clear: both;
+  padding-top: 1em;
+}
+.recording dd {
+  padding-left: 20px;
+}
+/*
+.track_button a {
+  display: block;
+  width: 7em;
+  padding: 0.1em;
+  line-height: 1.4;
+  border: 1px solid #959595;
+  color: #59659c;
+  text-align: center;
+  float: left;
+  background-color: #fde7cb;
+  margin: 0.5em 1em 0 0;
+}
+.track_button a:hover {
+  background-color: #d3efe7;
+}
+.play_button {
+  background: #fde7cb url(/media/play_wee.jpg) no-repeat 2px center;
+  
+}
+.info_button {
+  background: #fde7cb url(/media/info_wee.jpg) no-repeat 2px center;
+}
+*/
+
 .aside { border: 1px dotted #eaeaea; margin-bottom: 25px; padding: 5px; background-color: #f9f9f9; }
 .aside h3 {
     font-size: 22px;
 	xcolor: #5e5e5e;
 }
-quote { font-style: italic; color: #5e5e5e; }
+quote, .quote{ font-style: italic; color: #5e5e5e; }
 #footer {
 	background: #202042 none repeat scroll 0 0;
     border-top: 13px solid #f50;

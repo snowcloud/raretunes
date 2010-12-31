@@ -1,24 +1,30 @@
 {% extends "base.html" %}
-{% load markup recordingtags %}
+{% load markup recordingtags tagging_tags %}
 
 {% block title %}{{ object.full_name }}{% endblock %}
 
 {% block head_extra %}
-<link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" />
-<script type="text/javascript" src="/media/js/jquery.js"></script>
-<script type="text/javascript" src="/media/js/player.js"></script>
-
-<!-- <script type="text/javascript" src="/media/js/swfobject.js"></script>
-<script type="text/javascript" src="/media/js/jquery.js"></script>
-script type="text/javascript" src="/media/js/player.js"></script>
-<script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script -->
+{# <link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" /> #}
+{# <script type="text/javascript" src="/media/js/jquery.js"></script> #}
+{# <script type="text/javascript" src="/media/js/player.js"></script> #}
+{#  #}
+{# <!-- <script type="text/javascript" src="/media/js/swfobject.js"></script> #}
+{# <script type="text/javascript" src="/media/js/jquery.js"></script> #}
+{# script type="text/javascript" src="/media/js/player.js"></script> #}
+{# <script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script --> #}
+<script type="text/javascript" src="/static/js/audio-player.js"></script>  
+<script type="text/javascript">  
+    AudioPlayer.setup("/static/js/player.swf", {
+        width: 290  
+    });  
+</script>
 {% endblock %}
 
 {% block body %}id="performers"{% endblock %}
 
 {% block content %}
 
-<div class="box">
+<div class="article">
     {% if object.pic %}<p><img class="pic" src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/></p>{% endif %}
     <h1>{{ object.full_name }}</h1>
     {% if object.year_of_birth or object.year_of_death %}<p>
@@ -31,30 +37,21 @@ script type="text/javascript" src="/media/js/player.js"></script>
     <div class="info">
     {% if object.url %}web: <ul class="tags"><li><a href="{{ object.url }}">{{ object.url }}</a></li></ul>{% endif %}
     <br/>
-    tags: <ul class="tags">
-        {% for t in object.tags.all %}
-          <li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>
-        {% endfor %}
-    </ul>
+    {% show_tags object %}
     </div>           
 </div>
 <br/>
-<div class="box"><h1>Recordings</h1>
+<div class="article"><h1>Recordings</h1>
 
     {% if object.performers.all %}
 
-    <dl class="tracks">
+    <dl class="recording">
         {% for o in object.performers.all %}
           {% if o.published %}
 
            <dt>{{ o|track_link }}</dt>
-           <dd>tags: <ul class="tags">
-             {% for t in o.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
-             </ul></dd>
-           <dd class="track_button" id="{{ o.slug }}">
-             <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">information</a>
-           </dd>
-           <dd class="track_player" id="player_{{ o.slug }}">{{ o.play_url}}</dd>
+            <dd>{% show_tags o %}</dd>
+           <dd>{% show_player o %}</dd>
           {% endif %}
         {% endfor %}
     </dl>
@@ -83,7 +80,7 @@ script type="text/javascript" src="/media/js/player.js"></script>
     </form>
 	{% endcomment %}
     {% else %}
-        <p>recordings to be added</p>
+        <p>No recordings yet.</p>
     {% endif %}
     <br>
 </div>

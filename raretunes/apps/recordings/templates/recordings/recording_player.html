@@ -1,0 +1,6 @@
+<audio id="player_{{ object.slug }}" src="{{ object.play_url}}" controls="controls" preload="none">{{ object.play_url}}</audio> 
+ <script type="text/javascript">AudioPlayer.embed("player_{{ object.slug }}",
+     {soundFile: "{{ object.play_url}}",
+     titles: "{{ object.title }}",
+     artists: "{% for p in object.performers.all %}{{ p.full_name }}{% if not forloop.last%},{% endif %}{% endfor %}"
+     });</script>
