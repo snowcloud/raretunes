@@ -19,7 +19,7 @@ script type="text/javascript" src="/media/js/player.js"></script>
 {% block content %}
 
 <div class="box">
-    {% if object.pic %}<p><img class="pic" src="/media/{{ object.pic }}" alt="picture of {{ object.full_name }}"/></p>{% endif %}
+    {% if object.pic %}<p><img class="pic" src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/></p>{% endif %}
     <h1>{{ object.full_name }}</h1>
     {% if object.year_of_birth or object.year_of_death %}<p>
         {% if object.year_of_birth %}b. {{ object.year_of_birth }}&nbsp;&nbsp;&nbsp;{% endif %}

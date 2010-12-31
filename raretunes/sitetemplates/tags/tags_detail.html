@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load comments markup recordingtags %}
+{% load markup recordingtags tagging_tags %}
 
 {% block title %}{{ object.name }}{% endblock %}
 
@@ -24,14 +24,16 @@
 
 {{ object.description|textile }}
 
-    {% if object.artist_set.all %}
+{% tagged_objects object in recordings.artist as artists %}
+
+    {% if artists %}
     
     <h2>Performers: </h2>
         <div id="player"></div><div id="player_menu"></div>
         <form action="" id="track_list">
     
           <ul>
-            {% for artist in object.artist_set.all %}
+            {% for artist in artists %}
                 <li><a href="/performers/{{ artist.slug }}/">{{ artist.full_name }}</a>
                   {% ifnotequal artist.tags.count 1 %}<small>- also under:</small>
                     <ul class="tags">

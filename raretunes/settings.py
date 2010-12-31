@@ -162,6 +162,15 @@ AWS_U = 'your-amazon-user-key'
 AWS_K = 'your-amazon-secret-key'
 AWS_BUCKET = 'amazon.bucket.name'
 
+# archive.org urls
+ARCHIVE_URL = 'http://www.archive.org/'
+ARCHIVE_DETAILS_URL = '%sdetails/%%s' % ARCHIVE_URL
+ARCHIVE_DOWNLOAD_URL = '%sdownload/%%s/%%s' % ARCHIVE_URL
+ARCHIVE_STREAM_URL = '%sdownload/%%s/%%s' % ARCHIVE_URL
+
+IA_ARCHIVE_FTP = ('ftp://ia300102.us.archive.org/', )
+STANDARD_FOOTER = 'Part of the Raretunes Archive- see \nhttp://www.raretunes.org/recordings/%s/'
+FILE_CLAIM = '2008 RareTunes. Licensed to the public under %s verify at http://www.archive.org/details/%s'
 
 
 # override any of the above in your own settings_local.py
