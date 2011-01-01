@@ -131,7 +131,7 @@ padding-right: 200px; }
 .article p { line-height: 160%; padding-bottom: 1em; margin-bottom: 1em; }
 .article a, .article a:hover, .article a:visited  { color: #325e90; text-decoration: none; }
 .article p a, .article p a:hover, .article p a:visited { border-bottom: 1px dotted #919191;}
-.article img { float: right; padding: 6px; }
+.article img { float: right; padding: 6px 6px 20px 20px; }
 .article ul { list-style-type: disc; padding-left: 20px; padding-bottom: 10px; }
 .article .info { background-color: #eaecec; padding: 10px 20px; margin: 10px; }
 

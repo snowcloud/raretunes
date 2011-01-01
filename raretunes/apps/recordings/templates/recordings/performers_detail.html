@@ -25,7 +25,8 @@
 {% block content %}
 
 <div class="article">
-    {% if object.pic %}<p><img class="pic" src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/></p>{% endif %}
+    <div class="group">
+    {% if object.pic %}<img class="pic" src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/>{% endif %}
     <h1>{{ object.full_name }}</h1>
     {% if object.year_of_birth or object.year_of_death %}<p>
         {% if object.year_of_birth %}b. {{ object.year_of_birth }}&nbsp;&nbsp;&nbsp;{% endif %}
@@ -33,7 +34,7 @@
     </p>{% endif %}
     
         {{ object.note|textile }}
-    
+    </div>
     <div class="info">
     {% if object.url %}web: <ul class="tags"><li><a href="{{ object.url }}">{{ object.url }}</a></li></ul>{% endif %}
     <br/>
