@@ -50,14 +50,13 @@ float: left; margin-top: -24px; }
 #header h1 { 
 	display: inline;
 	floatx: left;
-	font-size: 45px;
-	letter-spacing: -2px;
+	font-size: 55px;
 	text-decoration: none;
 	text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4); 
 	padding: 0 30px 20px 20px;
-	margin: 0; color: #ffffff; }
+	margin: 0; color: #ffffff; font-style: italic; font-weight: normal; line-height: 90%; }
 
-#header em {  }
+#header h1 span { font-size: 152%; vertical-align: -20%; letter-spacing: -6px; }
 #headercontents {
 	border-top: 2px solid #656787;
 	margin-top: 20px; }
@@ -103,7 +102,7 @@ float: left; margin-top: -24px; }
     margin: 0; padding-top: 0.6em; }
     
 #pageintro a, #pageintro a:hover, #pageintro a:visited  { color: #325e90; text-decoration: none; }
-#home #pageintro { background: #fffeff url(../artists/agnes.jpg) no-repeat right 10px;
+#home #pageintro { background: #fffeff url(../artists/agnes.jpg) no-repeat right center;
 padding-right: 200px; }
 #maincontent {
     float: left;

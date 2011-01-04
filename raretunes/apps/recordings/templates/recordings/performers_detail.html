@@ -15,7 +15,7 @@
 <script type="text/javascript" src="/static/js/audio-player.js"></script>  
 <script type="text/javascript">  
     AudioPlayer.setup("/static/js/player.swf", {
-        width: 290  
+        width: 300  
     });  
 </script>
 {% endblock %}
@@ -50,7 +50,7 @@
         {% for o in object.performers.all %}
           {% if o.published %}
 
-           <dt>{{ o|track_link }}</dt>
+           <dt>{{ o|track_link }} <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">[track details]</a></dt>
             <dd>{% show_tags o %}</dd>
            <dd>{% show_player o %}</dd>
           {% endif %}
