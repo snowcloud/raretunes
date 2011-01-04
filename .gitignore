@@ -8,3 +8,4 @@
 /raretunes/settings_local.py
 /raretunes/sql_data
 /raretunes/static/artists
+.DS_Store
