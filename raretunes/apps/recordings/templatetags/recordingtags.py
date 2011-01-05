@@ -35,6 +35,10 @@ register.inclusion_tag('recordings/tags_also_artist_display.html', takes_context
 def show_performers(object):
     return {'performers': object.performers.all(), 'label': True}
 
+@register.inclusion_tag('recordings/performers_display.html')
+def show_performers_nolabel(object):
+    return {'performers': object.performers.all(), 'label': False}
+
 @register.inclusion_tag('recordings/recording_player.html')
 def show_player(object):
     return {'object': object }

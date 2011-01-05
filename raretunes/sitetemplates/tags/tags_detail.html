@@ -10,6 +10,7 @@
     // Setup the player to autoplay the next track
     var a = audiojs.createAll({
       trackEnded: function() {
+      // NB THIS IS DIFFERENT BECAUSE OF NESTED LISTS
         var next = $('li.playing').next();
         if (!next.length) next = $('li.recording').first();
         next.addClass('playing').siblings().removeClass('playing');
@@ -25,7 +26,6 @@
     // Load in a track on click
     $('li.recording a.track').click(function(e) {
       e.preventDefault();
-      // NB THIS IS DIFFERENT BECAUSE OF NESTED LISTS
       $('li.recording').removeClass('playing');
       $(this).parent().parent().addClass('playing');
       audio.load($(this).parent().parent().attr('data-src'));

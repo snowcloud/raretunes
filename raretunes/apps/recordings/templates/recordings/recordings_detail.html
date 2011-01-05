@@ -1,38 +1,8 @@
-{% extends "base.html" %}
+{% extends "recordings/recording_base.html" %}
 {% load markup recordingtags %}
-{# {% load markup recordingtags audioplayer %} #}
 
 {% block title %}{{ object.title }}{% endblock %}
 
-{% block head_extra %}
-<script src="/static/js/audiojs/audio.min.js"></script>
-{% endblock %}
-{% block js_docready %}
-    // Setup the player to autoplay the next track
-    var a = audiojs.createAll({
-      trackEnded: function() {
-        var next = $('li.playing').next();
-        if (!next.length) next = $('li.recording').first();
-        next.addClass('playing').siblings().removeClass('playing');
-        audio.load(next.attr('data-src'));
-        audio.play();
-      }
-    });
-    // Load in the first track
-    var audio = a[0];
-    first = $('li.recording').attr('data-src');
-    $('li.recording').first().addClass('playing');
-    audio.load(first);
-    // Load in a track on click
-    $('li.recording a.track').click(function(e) {
-      e.preventDefault();
-      $(this).parent().parent().addClass('playing').siblings().removeClass('playing');
-      audio.load($(this).parent().parent().attr('data-src'));
-      audio.play();
-    });
-{% endblock %}
-
-{% block body %}id="recordings"{% endblock %}
 
 {% block content %}
 
