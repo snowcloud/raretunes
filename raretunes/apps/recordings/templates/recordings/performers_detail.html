@@ -12,14 +12,49 @@
 {# <script type="text/javascript" src="/media/js/jquery.js"></script> #}
 {# script type="text/javascript" src="/media/js/player.js"></script> #}
 {# <script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script --> #}
-<script type="text/javascript" src="/static/js/audio-player.js"></script>  
-<script type="text/javascript">  
-    AudioPlayer.setup("/static/js/player.swf", {
-        width: 300  
-    });  
-</script>
-{% endblock %}
+{# <script type="text/javascript" src="/static/js/audio-player.js"></script>   #}
+{# <script type="text/javascript">   #}
+{#     AudioPlayer.setup("/static/js/player.swf", { #}
+{#         width: 300   #}
+{#     });   #}
+{# </script> #}
+<script src="/static/js/audiojs/audio.min.js"></script>
+{# <script> #}
+{#   audiojs.events.ready(function() { #}
+{#     var as = audiojs.createAll(); #}
+{#   }); #}
+{# </script> #}
 
+
+{% endblock %}
+{% block js_docready %}
+    // Setup the player to autoplay the next track
+    var a = audiojs.createAll({
+      trackEnded: function() {
+        var next = $('dt.playing').nextAll('.recording').first();
+        if (!next.length) next = $('dt.recording').first();
+        next.addClass('playing').siblings().removeClass('playing');
+        audio.load(next.attr('data-src'));
+        audio.play();
+      }
+    });
+    // Load in the first track
+    var audio = a[0];
+    first = $('dt.recording').attr('data-src');
+    $('dt.recording').first().addClass('playing');
+    audio.load(first);
+    // Load in a track on click
+    $('dt.recording').click(function(e) {
+      e.preventDefault();
+      $(this).addClass('playing').siblings().removeClass('playing');
+      audio.load($(this).attr('data-src'));
+      audio.play();
+    });
+
+
+
+
+{% endblock %}
 {% block body %}id="performers"{% endblock %}
 
 {% block content %}
@@ -28,7 +63,7 @@
     <div class="group">
     {% if object.pic %}<img class="pic" src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/>{% endif %}
     <h1>{{ object.full_name }}</h1>
-    {% if object.year_of_birth or object.year_of_death %}<p>
+    {% if object.year_of_birth or object.year_of_death %}<p class="">
         {% if object.year_of_birth %}b. {{ object.year_of_birth }}&nbsp;&nbsp;&nbsp;{% endif %}
         {% if object.year_of_death %}d. {{ object.year_of_death }}{% endif %}
     </p>{% endif %}
@@ -46,40 +81,17 @@
 
     {% if object.performers.all %}
 
-    <dl class="recording">
+  {# <p><audio src="http://media.raretunes.org/raretunesmikebbucks_vbr.mp3"/></p> #}
+    <audio></audio> 
+    
+    <dl class="recordings">
         {% for o in object.performers.all %}
           {% if o.published %}
-
-           <dt>{{ o|track_link }} <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">[track details]</a></dt>
-            <dd>{% show_tags o %}</dd>
-           <dd>{% show_player o %}</dd>
+            {% show_recording o %}
           {% endif %}
         {% endfor %}
     </dl>
 
-
-
-
-	{% comment %}
-    <div id="player"></div><div id="player_menu"></div>
-    <form action="" id="track_list">{% csrf_token %}
-      <ul>
-        {% for o in object.performers.all %}
-            {% if o.published %}
-            <li><!-- input type="checkbox" id="l{{ o.id }}" name="{{ o.id }}"/ --> 
-                {{ o|track_link }}
-                <a href="/recordings/{{ o.slug }}/" alt="mp3 file" class="small">[track details]</a>
-                  - <ul class="tags">
-                      {% for t in o.tags.all %}<li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last %}, {% endif %}</li>{% endfor %}
-                  </ul>
-                {# o|lofi_flash_stream_url:"<img src=\"/media/sound.gif\" alt=\"play recording (uses flash player)\"/>" #}
-                {# o|xspf_button #}
-            </li>
-            {% endif %}
-        {% endfor %}
-      </ul>
-    </form>
-	{% endcomment %}
     {% else %}
         <p>No recordings yet.</p>
     {% endif %}

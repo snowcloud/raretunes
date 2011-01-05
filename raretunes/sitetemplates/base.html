@@ -9,7 +9,7 @@
     <script type='text/javascript' src='/static/js/modernizr-1.6.min.js'></script>
     <script type="text/javascript" src="http://use.typekit.com/mry0xus.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
 
 	<link rel="shortcut icon" type="image/ico" href="/static/favicon.ico" />
@@ -17,16 +17,18 @@
 	<!--[if IE 6]>
 	  <link href="/static/css/ie6.css" media="screen, projection" rel="stylesheet" type="text/css" />
 	<![endif]-->
+	{% block head_extra %}{% endblock %}
     <script type="text/javascript">
       $('document').ready(function(){
-        $('.js .media').embedly({
-          maxWidth: 450,
-          wmode: 'transparent',
-          methodx: 'before'
-        });
+        {# $('.js .media').embedly({ #}
+        {#   maxWidth: 450, #}
+        {#   wmode: 'transparent', #}
+        {#   methodx: 'before' #}
+        {# }); #}
+        {% block js_docready %}{% endblock %}
       });
     </script>   
-	{% block head_extra %}{% endblock %}
+    {# <script>$(function() { {% block js_docready %}{% endblock %} }</script> #}
 </head>
 <body {% block body_id %}{% endblock %} class="{% block body_class %}simple{% endblock %}">
 

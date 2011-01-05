@@ -143,15 +143,18 @@ padding-right: 200px; }
 .article ul.tags li a { border-color: rgb(204, 204, 153); color: #888899; }
 .article ul.tags li a:hover { color: rgb(255, 255, 255); background-color: #888899; }
 
-.recording dt {
-  background: url(/static/images/notes.gif) no-repeat left 1em;
+dl.recordings { margin-top: 10px; }
+.recordings dt {
+  background: url(/static/images/notes_dim.gif) no-repeat left 1em;
   padding-left: 20px;
   clear: both;
   padding-top: 1em;
 }
-.recording dd {
+.recordings dt.playing { background-color: #d9e3eb; background-image: url(../images/notes.gif); }
+.recordings dd {
   padding-left: 20px;
 }
+.mp3link, .recordinginfo { font-size: 80%; color: #919191; }
 /*
 .track_button a {
   display: block;

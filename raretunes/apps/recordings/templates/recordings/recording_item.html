@@ -1,0 +1,6 @@
+{% load recordingtags %}
+<dt class="recording" data-src="{{ recording.play_url }}">{{ recording|track_link }} </dt>
+<dd>{% show_performers recording %} | 
+    <a href="{{ recording.play_url }}" class="mp3link">mp3</a> |
+    <a href="{% url recording recording.slug %}" class="recordinginfo">details</a>
+</dd>

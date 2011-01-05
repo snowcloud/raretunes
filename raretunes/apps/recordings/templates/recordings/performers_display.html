@@ -1,0 +1,11 @@
+<ul class="tags">
+    {% if performers %}
+        <li>{% if label %}performers:{% endif %} 
+        <ul class="tags">
+            {% for p in performers %}
+                <li><a href="{% url performer p.slug %}">{{ p.full_name }}</a></li>
+            {% endfor %}
+        </ul>
+        </li>
+    {% endif %}
+</ul>

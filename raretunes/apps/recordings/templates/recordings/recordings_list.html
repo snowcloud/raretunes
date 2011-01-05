@@ -34,7 +34,7 @@
     {% if object_list %}
     <div id="player"></div><div id="player_menu"></div>
     <form action="" id="track_list">{% csrf_token %}
-       <dl class="recording">
+       <dl class="recordings">
            {% paginate %}
            
            {% for object in object_list %}
