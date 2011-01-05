@@ -156,9 +156,16 @@ ol.recordings { margin-top: 10px; }
 .recordings div.recording_info a, .recordings div.recording_info a:visited { color: #8888a8; }
 .pagination { padding: 10px; background-color: #eaeaea; margin-bottom: 20px; margin-top: 10px; }
 .pagination .disabled { color: #919191; }
-.pagination .page { padding: 0 0.5em; }
-.pagination .current { font-weight: bold; font-size: 120%; color: #6c6b8d; }
-.pagination a { text-decoration: none; border-bottom-style: none; }
+.pagination .page { padding: 0 0.3em; }
+.pagination .current { font-weight: bold; font-size: 140%; color: #8f2c0a; background-color: #c8d2db; }
+.pagination a { font-size: 120%; text-decoration: none; border-bottom-style: none; }
+
+ol.performers { margin-top: 10px; border-top: 1px solid #eaeaea; }
+li.performer { background: url(/static/images/person.png) no-repeat left 0.7em;
+  clear: both; padding: 0.5em 20px; font-size: 120%; border-bottom: 1px solid #eaeaea; border-top: 1px solid #fff; }
+a.performername { border-bottom: none; }
+
+li.performer li.recording { font-size: 80%; }
 
 .aside { border: 1px dotted #eaeaea; margin-bottom: 25px; padding: 5px; background-color: #f9f9f9; }
 .aside h3 {

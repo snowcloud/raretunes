@@ -1,11 +1,8 @@
-{% extends "base.html" %}
+{% extends "recordings/recording_base.html" %}
 {% load markup recordingtags tagging_tags %}
 
 {% block title %}{{ object.name }}{% endblock %}
 
-{% block head_extra %}
-<script src="/static/js/audiojs/audio.min.js"></script>
-{% endblock %}
 {% block js_docready %}
     // Setup the player to autoplay the next track
     var a = audiojs.createAll({
@@ -48,11 +45,12 @@
     {% if artists %}
     
     <h2>Performers: </h2>
-        <audio></audio> 
     
-          <ul>
+        <audio preload="none"></audio> 
+    
+          <ol class="performers">
             {% for artist in artists %}
-                <li><a href="/performers/{{ artist.slug }}/">{{ artist.full_name }}</a>
+                <li class="performer"><a class="performername" href="/performers/{{ artist.slug }}/">{{ artist.full_name }}</a>
                     {% show_also_artist_tags  %}
                                   
                   {% if artist.performers.all %}
@@ -69,7 +67,7 @@
                   {% endif %}
                 </li>
             {% endfor %}
-          </ul>
+          </ol>
     {% else %}
     <p>No performers found for this.</p>
     {% endif %}
