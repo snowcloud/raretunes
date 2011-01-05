@@ -17,6 +17,20 @@ def show_tags_nolabel(object):
 def show_tags(object):
     return {'tag_list': Tag.objects.get_for_object(object), 'label': True}
 
+
+    def jump_link(context):
+        return {
+            'link': context['home_link'],
+            'title': context['home_title'],
+        }
+    # Register the custom tag as an inclusion tag with takes_context=True.
+
+def show_also_artist_tags(context):
+    tag_list = [tag for tag in Tag.objects.get_for_object(context['artist']) if tag.name != context['object'].name]
+    return {'tag_list': tag_list, 'label': False}
+
+register.inclusion_tag('recordings/tags_also_artist_display.html', takes_context=True)(show_also_artist_tags)
+
 @register.inclusion_tag('recordings/performers_display.html')
 def show_performers(object):
     return {'performers': object.performers.all(), 'label': True}
@@ -27,7 +41,7 @@ def show_player(object):
 
 @register.filter
 def track_link(value):
-    return mark_safe('<a href="%s">%s</a>' % (value.play_url, value.title)) 
+    return mark_safe('<a href="%s" class="track">%s</a>' % (value.play_url, value.title)) 
 
 
 @register.filter

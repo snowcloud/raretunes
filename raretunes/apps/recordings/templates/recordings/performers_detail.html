@@ -4,35 +4,14 @@
 {% block title %}{{ object.full_name }}{% endblock %}
 
 {% block head_extra %}
-{# <link rel="stylesheet" type="text/css" href="/media/player.css" media="screen" /> #}
-{# <script type="text/javascript" src="/media/js/jquery.js"></script> #}
-{# <script type="text/javascript" src="/media/js/player.js"></script> #}
-{#  #}
-{# <!-- <script type="text/javascript" src="/media/js/swfobject.js"></script> #}
-{# <script type="text/javascript" src="/media/js/jquery.js"></script> #}
-{# script type="text/javascript" src="/media/js/player.js"></script> #}
-{# <script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script --> #}
-{# <script type="text/javascript" src="/static/js/audio-player.js"></script>   #}
-{# <script type="text/javascript">   #}
-{#     AudioPlayer.setup("/static/js/player.swf", { #}
-{#         width: 300   #}
-{#     });   #}
-{# </script> #}
 <script src="/static/js/audiojs/audio.min.js"></script>
-{# <script> #}
-{#   audiojs.events.ready(function() { #}
-{#     var as = audiojs.createAll(); #}
-{#   }); #}
-{# </script> #}
-
-
 {% endblock %}
 {% block js_docready %}
     // Setup the player to autoplay the next track
     var a = audiojs.createAll({
       trackEnded: function() {
-        var next = $('dt.playing').nextAll('.recording').first();
-        if (!next.length) next = $('dt.recording').first();
+        var next = $('li.playing').next();
+        if (!next.length) next = $('li.recording').first();
         next.addClass('playing').siblings().removeClass('playing');
         audio.load(next.attr('data-src'));
         audio.play();
@@ -40,20 +19,16 @@
     });
     // Load in the first track
     var audio = a[0];
-    first = $('dt.recording').attr('data-src');
-    $('dt.recording').first().addClass('playing');
+    first = $('li.recording').attr('data-src');
+    $('li.recording').first().addClass('playing');
     audio.load(first);
     // Load in a track on click
-    $('dt.recording').click(function(e) {
+    $('li.recording a.track').click(function(e) {
       e.preventDefault();
-      $(this).addClass('playing').siblings().removeClass('playing');
-      audio.load($(this).attr('data-src'));
+      $(this).parent().parent().addClass('playing').siblings().removeClass('playing');
+      audio.load($(this).parent().parent().attr('data-src'));
       audio.play();
     });
-
-
-
-
 {% endblock %}
 {% block body %}id="performers"{% endblock %}
 
@@ -81,16 +56,15 @@
 
     {% if object.performers.all %}
 
-  {# <p><audio src="http://media.raretunes.org/raretunesmikebbucks_vbr.mp3"/></p> #}
     <audio></audio> 
     
-    <dl class="recordings">
+    <ol class="recordings">
         {% for o in object.performers.all %}
           {% if o.published %}
             {% show_recording o %}
           {% endif %}
         {% endfor %}
-    </dl>
+    </ol>
 
     {% else %}
         <p>No recordings yet.</p>
