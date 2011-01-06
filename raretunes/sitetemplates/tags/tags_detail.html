@@ -5,16 +5,27 @@
 
 {% block js_docready %}
     // Setup the player to autoplay the next track
+    function get_next() {
+        var current = $('li.playing');
+        var id = current.attr('id');
+        id = parseInt(id.slice(4)) + 1;
+        console.log(id);
+        current.removeClass('playing');
+        return $('#rec_' + id);
+    } 
     var a = audiojs.createAll({
       trackEnded: function() {
       // NB THIS IS DIFFERENT BECAUSE OF NESTED LISTS
-        var next = $('li.playing').next();
+        var next = get_next();
         if (!next.length) next = $('li.recording').first();
-        next.addClass('playing').siblings().removeClass('playing');
+        next.addClass('playing');
         audio.load(next.attr('data-src'));
         audio.play();
       }
     });
+    $('li.recording').each(function(index) {
+        $(this).attr('id','rec_' + index);
+      });
     // Load in the first track
     var audio = a[0];
     first = $('li.recording').attr('data-src');
