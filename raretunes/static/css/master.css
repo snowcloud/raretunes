@@ -144,6 +144,8 @@ padding-right: 200px; }
 .article ul.tags li a { border-color: rgb(204, 204, 153); color: #888899; }
 .article ul.tags li a:hover { color: rgb(255, 255, 255); background-color: #888899; }
 
+.audiojs { width: 100%; height: 3em; }
+.audiojs .scrubber { width: 60%; }
 ol.recordings { margin-top: 10px; }
 .recordings li {
   background: url(/static/images/notes_dim.gif) no-repeat left 0.5em; clear: both; padding: 0.5em 20px;  }
