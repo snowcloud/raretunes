@@ -29,16 +29,20 @@
     // Load in the first track
     var audio = a[0];
     first = $('li.recording').attr('data-src');
-    $('li.recording').first().addClass('playing');
-    audio.load(first);
-    // Load in a track on click
-    $('li.recording a.track').click(function(e) {
-      e.preventDefault();
-      $('li.recording').removeClass('playing');
-      $(this).parent().parent().addClass('playing');
-      audio.load($(this).parent().parent().attr('data-src'));
-      audio.play();
-    });
+    if (first) {
+        $('li.recording').first().addClass('playing');
+        audio.load(first);
+        // Load in a track on click
+        $('li.recording a.track').click(function(e) {
+          e.preventDefault();
+          $('li.recording').removeClass('playing');
+          $(this).parent().parent().addClass('playing');
+          audio.load($(this).parent().parent().attr('data-src'));
+          audio.play();
+        }); 
+    }
+    else { $('.audiojs').remove();}
+    
 {% endblock %}
 
 {% block body %}id="tags_nav"{% endblock %}
