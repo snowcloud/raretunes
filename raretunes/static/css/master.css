@@ -120,10 +120,11 @@ padding-right: 200px; }
 
 #sidebar .links a, #sidebar .links a:hover, #sidebar .links a:visited  {
 	color: #797979; text-decoration: none; xborder-bottom: 1px dotted #919191; }
-#sidebar .links li { border-bottom: 1px solid #eaeaea; padding-bottom: 10px; padding-top: 5px; }
+#sidebar .links ul { margin-top: 10px; border-top: 1px solid #eaeaea; }
+#sidebar .links li { border-bottom: 1px solid #eaeaea; padding-bottom: 10px; padding-top: 5px; border-top: 1px solid #fff; }
 #maincontent .section { border: 1px solid #d5d5d5; }
 .article {
-	background-color: #f9f9f9; padding: 6px;  }
+	background-color: #f9f9f9; padding: 6px; border-top: 1px solid #fff; border-bottom: 1px solid #eaecec; border-right: 1px solid #eaecec; }
 .article h1 { font-size: 28px; padding-bottom: 0.5em; }
 .article h2, .article h3 { font-size: 22px; padding-bottom: 0.5em; }
 .article p { line-height: 160%; padding-bottom: 1em; margin-bottom: 1em; }
@@ -132,7 +133,7 @@ padding-right: 200px; }
 /*.article p a, .article p a:hover, .article p a:visited { border-bottom: 1px dotted #919191;}*/
 .article img { float: right; padding: 6px 6px 20px 20px; }
 .article ul { list-style-type: disc; padding-left: 20px; padding-bottom: 10px; }
-.article .info { background-color: #eaecec; padding: 10px 20px; margin: 10px; }
+.article .info { background-color: #eaecec; padding: 10px 20px; border: 1px solid #dbdddd; margin: 10px 0 0; }
 
 .article ul.tags { margin: 0pt; padding: 0pt; display: inline; font-size: 90%; color: #330062; list-style-type: none; list-style-image: none; list-style-position: outside; }
 .article ul.tags li { margin: 0pt; padding: 0pt; background: transparent none repeat; display: inline; list-style-type: none; }
@@ -145,9 +146,9 @@ padding-right: 200px; }
 
 ol.recordings { margin-top: 10px; }
 .recordings li {
-  background: url(/static/images/notes_dim.gif) no-repeat left 0.5em;
-  clear: both; padding: 0.5em 20px; }
-.recordings li.playing { background-color: #d9e3eb; background-image: url(../images/notes.gif); }
+  background: url(/static/images/notes_dim.gif) no-repeat left 0.5em; clear: both; padding: 0.5em 20px;  }
+.recordings li.recording { border: 1px solid #f9f9f9; }
+.recordings li.playing { background-color: #d9e3eb; background-image: url(../images/notes.gif); border: 1px solid #cad4dc; border-radius: 8px; -moz-border-radius: 8px; }
 .recordings li p {
   padding: 0px; margin: 0; line-height: 100%; }
 .mp3link, .recordinginfo { font-size: 80%; color: #888899; }
@@ -157,7 +158,7 @@ ol.recordings { margin-top: 10px; }
 .pagination { padding: 10px; background-color: #eaeaea; margin-bottom: 20px; margin-top: 10px; }
 .pagination .disabled { color: #919191; }
 .pagination .page { padding: 0 0.3em; }
-.pagination .current { font-weight: bold; font-size: 140%; color: #8f2c0a; background-color: #c8d2db; }
+.pagination .current { font-weight: bold; font-size: 140%; color: #2a3671; background-color: #c8d2db; }
 .pagination a { font-size: 120%; text-decoration: none; border-bottom-style: none; }
 
 ol.performers { margin-top: 10px; border-top: 1px solid #eaeaea; }
@@ -167,7 +168,7 @@ a.performername { border-bottom: none; }
 
 li.performer li.recording { font-size: 80%; }
 
-.aside { border: 1px dotted #eaeaea; margin-bottom: 25px; padding: 5px; background-color: #f9f9f9; }
+.aside { border: 1px solid #eaeaea; margin-bottom: 25px; padding: 5px; background-color: #f9f9f9; }
 .aside h3 {
     font-size: 22px;
 	xcolor: #5e5e5e;
