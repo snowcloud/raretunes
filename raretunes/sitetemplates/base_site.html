@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block head_extra %}{% endblock %}
+{% block js_docready %}{% endblock %}
+{% block body_id %}{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block main %}
+
+{# <div id="pageintro" class="group">{% block pageintro %}{% endblock pageintro %}</div> #}
+
+<div id="maincontent">
+{% block content %}{% endblock content %}
+</div>
+
+{% block sidebar %}
+<div id="sidebar">
+
+<div class="aside links">
+        <h3>Latest recordings</h3>
+        <ul>
+
+          <li><a href="/recordings/saved-his-grace/">Saved by his Grace</a></li>
+
+          <li><a href="/recordings/swing-low/">Swing low</a></li>
+
+          <li><a href="/recordings/im-trampin/">I'm a trampin'</a></li>
+
+          <li><a href="/recordings/thou-art-my-rock/">Thou art my rock</a></li>
+
+          <li><a href="/recordings/ballad-johnny-ramensky/">Ballad of Johnny Ramensky</a></li>
+
+          <li><a href="/recordings/day-we-went-rothesay-o/">Day we went to Rothesay O</a></li>
+
+          <li><a href="/recordings/land-o-leal/">Land o' the leal</a></li>
+
+          <li><a href="/recordings/my-ain-countrie/">My Ain Countrie</a></li>
+
+          <li><a href="/recordings/rigs-o-rye/">Rigs o rye</a></li>
+
+          <li><a href="/recordings/now-westlin-winds-and-slaughtring-guns/">Now westlin winds and slaught'ring guns</a></li>
+
+        </ul>
+        <p><a href="/">more &hellip;</a></p>
+        </div>
+<div class="aside links">
+        <h3>Latest artists</h3>
+        <ul>
+
+          <li><a href="/performers/william-macewan/">William MacEwan</a></li>
+
+          <li><a href="/performers/john-maccoll/">John MacColl</a></li>
+
+          <li><a href="/performers/rev-d-duncan-mcneill/">Rev D. (Duncan) McNeill</a></li>
+
+          <li><a href="/performers/edward-machugh/">Edward MacHugh</a></li>
+
+          <li><a href="/performers/stuart-macgregor/">Stuart Macgregor</a></li>
+
+          <li><a href="/performers/bob-and-bert/"> Bob and Bert</a></li>
+
+        </ul>
+        <p><a href="/">more &hellip;</a></p>
+        </div>
+
+<div class="aside links">
+<h3>Links</h3>
+<ul>
+  <li><a href="http://archive.org">The Internet Archive</a></li>
+  <li><a href="http://creativecommons.org">Creative Commons</a></li>
+  <li><a href="http://songbirdnest.com">Songbird player</a></li>
+</ul>
+<p><a href="/links/">more &hellip;</a></p>
+</div>
+
+<div class="aside links">
+    <p><a href="/contact/">Contact us</a> if you have any suggestions or material you'd like to contribute.</p>
+</div>
+
+</div>
+{% endblock sidebar %}
+
+    
+{% endblock main %}
+
+

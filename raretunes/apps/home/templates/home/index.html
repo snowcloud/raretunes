@@ -1,20 +1,15 @@
-{% extends "base.html" %}
-{% load markup  %}
-{# {% load markup sitevars webnews %} #}
-
-{% block title %}home{% endblock %}
-
-{% block head_extra %}<script type="text/javascript" src="/media/ss/swfobject.js"></script>{% endblock %}
-
+{% extends "base_single.html" %}
 {% block body_id %}id="home"{% endblock %}
-{% block body_class %}{% endblock %}
-
+{% block body_class %}simple single{% endblock body_class %}
 {% block pageintro %}
+<div id="pageintro" class="group">
+
 <h1>An archive of Scottish music</h1>
 <p>Recordings range from near-studio quality to crowded and noisy house sessions, from digital media to old bits of tape, vinyl and 78s.</p>
-<p>From straight-from-the-heart stuff by musicians who never recorded commercially, to old material performed by the stars of the day. <a href="/faq/">Read&nbsp;more...</a></p>
+<p>Straight-from-the-heart stuff by musicians who never recorded commercially, and old material performed by the stars of the day. <a href="/faq/">Read&nbsp;more&hellip;</a></p>
+</div>
+{% endblock pageintro %}
 
-{% endblock%}
 {% block content %}
 
 {# <div id="monoSlideshow" class="pic"><img  src="/static/artists/agnes.jpg" alt="agnes with mandolin"/></div> #}
@@ -28,9 +23,49 @@
 {#     // ]]> #}
 {# </script> #}
 
+<div class="section group">
+    <div class="article grid_4 alpha">
+        <h3>Latest recordings</h3>
+        <ul>
+          <li><a href="/recordings/saved-his-grace/">Saved by his Grace</a></li>
+          <li><a href="/recordings/swing-low/">Swing low</a></li>
+          <li><a href="/recordings/im-trampin/">I'm a trampin'</a></li>
+          <li><a href="/recordings/thou-art-my-rock/">Thou art my rock</a></li>
+          <li><a href="/recordings/ballad-johnny-ramensky/">Ballad of Johnny Ramensky</a></li>
+          <li><a href="/recordings/day-we-went-rothesay-o/">Day we went to Rothesay O</a></li>
+          <li><a href="/recordings/land-o-leal/">Land o' the leal</a></li>
+          <li><a href="/recordings/my-ain-countrie/">My Ain Countrie</a></li>
+          <li><a href="/recordings/rigs-o-rye/">Rigs o rye</a></li>
+          <li><a href="/recordings/now-westlin-winds-and-slaughtring-guns/">Now westlin winds and slaught'ring guns</a></li>
+        </ul>
+        <p><a href="/">more &hellip;</a></p>
+        
+    </div>
+    <div class="article grid_4 ">
+        <h3>Latest performers</h3>
+        <ul>
+          <li><a href="/performers/william-macewan/">William MacEwan</a></li>
+          <li><a href="/performers/john-maccoll/">John MacColl</a></li>
+          <li><a href="/performers/rev-d-duncan-mcneill/">Rev D. (Duncan) McNeill</a></li>
+          <li><a href="/performers/edward-machugh/">Edward MacHugh</a></li>
+          <li><a href="/performers/stuart-macgregor/">Stuart Macgregor</a></li>
+          <li><a href="/performers/bob-and-bert/"> Bob and Bert</a></li>
+        </ul>
+        <p><a href="/">more &hellip;</a></p>
+    </div>
+    <div class="article grid_4 omega">
+        <h3>RareTunes collections</h3>
+        <ul>
+          <li><a href="">Ferguson's Auld Reikie</a></li>
+          <li><a href="">Bernard Ponsonby Archive</a></li>
+          <li><a href="">Religious Music</a></li>
+        </ul>
+    </div>
 
-<div class="section">
-<div class="article"><h3>Hear the tunes</h3>
+</div>
+
+<div class="section group">
+<div class="article grid_4 alpha"><h3>Hear the tunes</h3>
 
 <p>You can listen to all the music on this site, just:</p>
 <ul>
@@ -41,13 +76,13 @@
 <p>We show links to MP3 files in the recording lists, so you can use other software to download- try the <a href="http://songbirdnest.com">Songbird web player</a> which will let you download into your own library or make playlists of your favourite <em>Rare</em>Tunes.</p>
 </div>
 
-<div class="article"><h3>Rare?</h3>
+<div class="article grid_4"><h3>Rare?</h3>
     <p>In modern Scots, 'rare' is often used to mean something really enjoyable. The <a href="http://www.dsl.ac.uk/dsl/">Dictionary of the Scots Language</a> quotes Ian Rankin in 'Black and Blue' (1999) writing: <quote>"Jings, but it was rare to be home."</quote></p>
     <p>If you would like to contribute, then please <a href="/contact/">get in touch</a>. Raretunes started in 2006, and is developed and maintained by <a href="/performers/derek-hoy/">Derek Hoy</a> and <a href="/performers/eydmann">Stuart Eydmann</a> without any external funding.</p>
     <p>The web site code is now <a href="http://github.org/snowcloud/raretunes">open source</a>.</p>
 </div>
     
-<div class="article"><h3>Creative Commons</h3>
+<div class="article grid_4 omega"><h3>Creative Commons</h3>
 <a href="http://archive.org"><img class="pic" src="static/images/cc_01.png" alt="Archive.org logo"/></a>
 <p><quote>"Creative Commons provides free tools that let authors, scientists, artists, and educators easily mark their creative work with the freedoms they want it to&nbsp;carry."</quote></p>
 
@@ -57,4 +92,5 @@
 </div>
 
 </div>
-{% endblock %}
+{% endblock content %}
+

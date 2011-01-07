@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load markup  %}
+{# {% load markup sitevars webnews %} #}
+
+{% block title %}home{% endblock %}
+
+{% block body_id %}id="home"{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block main %}
+
+{% block pageintro %}{% endblock pageintro %}
+
+<div id="maincontent">{% block content %}{% endblock content %}</div>
+
+{% endblock main %}

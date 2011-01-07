@@ -19,10 +19,9 @@ body.simple p { padding: 5px 10px; }
 	
 h1, h2, h3, h4 {
 	font-family: "myriad-pro-1","myriad-pro-2",Trebuchet MS,sans-serif;
-	font-weight: normal;
 	color: #5e5e5e;
-	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); font-style: normal; }
-h1 { font-size: 45px; }
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);  font-weight: normal; }
+h1 { font-size: 45px; font-style: normal; }
 h2 { font-size: 36px; }
 h3 { font-size: 24px; }
 
@@ -45,7 +44,7 @@ a:hover { background-color: #cdd1e5; border-bottom: 1px solid #202042; }
 	position: relative; padding-bottomx: 60px; border-right-style: none; border: 2px solid #d5d5d5; border-right-width: 0; margin: 0 0 20px 6%; }
 #header a, #header a:hover, #header a:visited { color: white; text-decoration: none; border-style: none; }
 #header img { 
-float: left; margin-top: -24px; }
+float: left; margin-top: -10px; }
 #header h1 { 
 	display: inline;
 	floatx: left;
@@ -55,7 +54,7 @@ float: left; margin-top: -24px; }
 	padding: 0 30px 20px 20px;
 	margin: 0; color: #ffffff; font-weight: normal; line-height: 90%; }
 
-#header h1 em { letter-spacing: -2px; font: italic 98% Georgia, "Times New Roman", Times, serif; }
+#header h1 em { letter-spacing: -2px; font: italic 100% "Times New Roman", Times, serif; }
 #headercontents {
 	border-top: 2px solid #656787;
 	margin-top: 20px; }
@@ -81,24 +80,15 @@ float: left; margin-top: -24px; }
 #usernav a, #usernav a:hover, #usernav a:visited  { color: #5e5e5e}
 
 #main {
-	max-width: 735px; background-color: #ffffff; margin-left: 6%; border: 1px solid #d5d5d5; border-right-style: none; padding: 0 260px 0 0; }
-.single #main {
-	padding: 0 40px 0 6%;
-	max-width: 935px;
- }
-
+	max-width: 735px; background-color: #ffffff; margin-left: 6%; border: 1px solid #d5d5d5; padding: 0 260px 0 0; }
+.single #main { padding-rightx: 10px; }
 #pageintro {
-	background-color: #fcfeff; margin: 0 -224px 50px 40px; padding: 8px; }
+	background-color: #fcfeff; padding: 8px; margin: 0 -224px 50px 40px; }
 #pageintro h1 {
     font-size: 36px;
     letter-spacing: -0.02em;
-    margin: 0;
-}
-#pageintro p {
-    font-family: georgia;
-    font-size: 20px;
-    font-style: italic;
-    margin: 0; padding-top: 0.6em; }
+    margin: 0; padding-top: 0.4em; }
+#pageintro p { margin: 0; padding-top: 0.6em; font: italic 22px/1.5em "ff-meta-serif-web-pro-1","ff-meta-serif-web-pro-2", georgia, "Times New Roman", Times, serif; color: #4f4b6c; }
     
 #pageintro a, #pageintro a:hover, #pageintro a:visited  { color: #325e90; text-decoration: none; }
 #home #pageintro { background: #fffeff url(../artists/agnes.jpg) no-repeat right center;
@@ -106,13 +96,14 @@ padding-right: 200px; }
 #maincontent {
     float: left;
     width: 89%; 
-    padding: 0 2.5% 40px 40px;  }
+    padding: 20px 2.5% 40px 40px;  }
+.single #maincontent { width: auto; margin-right: -240px; }
+
 #sidebar { 
 	display: inline;
     float: right;
     margin-right: -224px;
-    width: 224px;
-}
+    width: 224px; padding-top: 20px; }
 #sidebar .form {
 	background-color: #d8e1e7;
 	padding: 6px 6px 26px; margin-bottom: 26px; }
@@ -122,9 +113,11 @@ padding-right: 200px; }
 	color: #797979; text-decoration: none; xborder-bottom: 1px dotted #919191; }
 #sidebar .links ul { margin-top: 10px; border-top: 1px solid #eaeaea; }
 #sidebar .links li { border-bottom: 1px solid #eaeaea; padding-bottom: 10px; padding-top: 5px; border-top: 1px solid #fff; }
-#maincontent .section { border: 1px solid #d5d5d5; }
+#maincontent .section { border: 1px solid #d5d5d5; margin-bottom: 10px; }
+.single #maincontent .section { padding: 5px; background-color: #f9f9f9; }
 .article {
 	background-color: #f9f9f9; padding: 6px; border-top: 1px solid #fff; border-bottom: 1px solid #eaecec; border-right: 1px solid #eaecec; }
+.article.grid_4 { border: none; }
 .article h1 { font-size: 28px; padding-bottom: 0.5em; }
 .article h2, .article h3 { font-size: 22px; padding-bottom: 0.5em; }
 .article p { line-height: 160%; padding-bottom: 1em; margin-bottom: 1em; }
@@ -150,7 +143,7 @@ ol.recordings { margin-top: 10px; }
 .recordings li {
   background: url(/static/images/notes_dim.gif) no-repeat left 0.5em; clear: both; padding: 0.5em 20px;  }
 .recordings li.recording { border: 1px solid #f9f9f9; }
-.recordings li.playing { background-color: #d9e3eb; background-image: url(../images/notes.gif); border: 1px solid #cad4dc; border-radius: 8px; -moz-border-radius: 8px; }
+.recordings li.playing { background-color: #d9e3eb; background-image: url(../images/notes.gif); border: 1px solid #cad4dc; border-radius: 6px; -moz-border-radius: 6px; }
 .recordings li p {
   padding: 0px; margin: 0; line-height: 100%; }
 .mp3link, .recordinginfo { font-size: 80%; color: #888899; }

@@ -4,10 +4,12 @@
  & MinWidth: 960px
  & MaxWidth: 1080px
  */
+.grid_0 { width: auto;}
 .grid_1 { width: 6.6666666666667%; }
 .grid_2 { width: 15%; }
 .grid_3 { width: 23.333333333333%; }
-.grid_4 { width: 31.666666666667%; }
+/*.grid_4 { width: 31.666666666667%; }*/
+.grid_4 { width: 30.91%; }
 .grid_5 { width: 40%; }
 .grid_6 { width: 48.333333333333%; }
 .grid_7 { width: 56.666666666667%; }
@@ -17,6 +19,7 @@
 .grid_11 { width: 90%; }
 .grid_12 { width: 98.333333333333%; }
 
+.grid_0,
 .grid_1,
 .grid_2,
 .grid_3,
