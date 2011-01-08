@@ -117,7 +117,8 @@ INSTALLED_APPS = (
     'tagging',
     'home',
     'recordings',
-    'scutils'
+    'scutils',
+    'south'
     
 )
 #  used in recordings.templatetags.recordingtags
