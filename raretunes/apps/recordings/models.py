@@ -37,7 +37,7 @@ class Artist(models.Model):
     url = models.URLField(blank=True)
     note = models.TextField(blank=True)
     pic = models.ImageField(upload_to="artists", null=True, blank=True)
-    pic_credit = models.CharField(max_length=48, null=True, blank=True)
+    pic_credit = models.TextField(null=True, blank=True)
     additional_info = models.TextField(null=True, blank=True)
     tags = TagField()
     date_entered = models.DateField(default=datetime.date.today)
