@@ -12,7 +12,7 @@ Author: 	dan@simplebits.com
 body { 
 	color: #212121;
 	margin-top: 30px;
-    min-width: 850px;
+    min-width: 780px;
 	font: 14px/1.4 "myriad-pro-1","myriad-pro-2",Trebuchet MS,Verdana, Tahoma, Arial, sans-serif; 
 	background: #f0ffee none no-repeat; }
 body.simple p { padding: 5px 10px; }
@@ -40,7 +40,7 @@ a:hover { background-color: #cdd1e5; border-bottom: 1px solid #202042; }
 	background: #202042 none repeat scroll 0 0;
 	color: white;
 	heightx: 4.8em;
-	padding-top: 50px;	
+	padding-top: 40px;	
 	position: relative; padding-bottomx: 60px; border-right-style: none; border: 2px solid #d5d5d5; border-right-width: 0; margin: 0 0 20px 6%; }
 #header a, #header a:hover, #header a:visited { color: white; text-decoration: none; border-style: none; }
 #header img { 
@@ -55,10 +55,11 @@ float: left; margin-top: -10px; }
 	margin: 0; color: #ffffff; font-weight: normal; line-height: 90%; }
 
 #header h1 em { letter-spacing: -2px; font: italic 100% "Times New Roman", Times, serif; }
-#headercontents {
+#headercontents { max-width: 990px; background-colorx: red;}
+/*#headercontents {
 	border-top: 2px solid #656787;
-	margin-top: 20px; }
-#sitenav  {
+	margin-top: 20px; }*/
+/*#sitenav  {
 	background-color: #f50; padding-top: 5px; padding-bottom: 10px; }
 #sitenav li { 
 	display: inline;
@@ -68,8 +69,53 @@ float: left; margin-top: -10px; }
     padding: 0em 16px;
     font-weight: bold;
 }
-#sitenav a:hover { background-color: #ca4400; }
-#headercontents .search { float: right; top: -2.5em; position: relative; padding-right: 10px; }
+#sitenav a:hover { background-color: #ca4400; }*/
+
+	
+#sitenav {
+	background-color: red;
+	position: relative;
+	width: auto;
+	min-width: 680px;
+	margin: 10px 0 0;
+	font-size: 1.3em;
+	}
+#sitenav-inner { max-width: 1000px; }
+#sitenav ul {
+	margin: 0 auto;
+	
+	}
+#sitenav ul li {
+	float: left;
+	xwidth: 20%;
+	margin: 0 0 0 0;
+	}
+#sitenav ul li.last {
+	margin-right: 0;
+	}
+#sitenav ul li a {
+	display: block;
+	float: left;
+	xwidth: 100%;
+	xfont-size: 1.1em;
+	line-height: 1em;
+	xfont-weight: bold;
+	text-decoration: none;
+	xtext-transform: uppercase;
+	xletter-spacing: 2px;
+	xcolor: #f3f2e8;
+	border-left: 1px solid #d10012;
+	padding: .4em 15px;
+	}
+#sitenav ul li a:hover { border-left: 1px solid #d10012; background-color: #d10012; }
+
+#search { 
+    float: right;
+    margin-right: 30px;
+    margin-top: -1.7em;
+    xmargin-bottom: -1em;
+    xpadding-top: 1em;
+}
 #usernav { background: #fffeff;
 	margin-top: 2.6em; margin-left: 40px; padding: 10px; }
 .rgba #usernav { background: rgba(255,254,255,0.4);}
@@ -80,8 +126,8 @@ float: left; margin-top: -10px; }
 #usernav a, #usernav a:hover, #usernav a:visited  { color: #5e5e5e}
 
 #main {
-	max-width: 735px; background-color: #ffffff; margin-left: 6%; border: 1px solid #d5d5d5; padding: 0 260px 0 0; }
-.single #main { padding-rightx: 10px; }
+	max-width: 735px; margin-left: 6%; border: 1px solid #d5d5d5; padding: 0 260px 0 0; background: #ffffff url(../images/rare-man-dog.jpg) no-repeat right bottom; }
+/*.single #main { padding-rightx: 10px; }*/
 #pageintro {
 	background-color: #fcfeff; padding: 8px; margin: 0 -224px 50px 40px; }
 #pageintro h1 {

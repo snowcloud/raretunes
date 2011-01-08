@@ -32,6 +32,38 @@
 <body {% block body_id %}{% endblock %} class="{% block body_class %}simple{% endblock %}">
 
 <div id="header" class="group">
+	<div id="headercontents" class="group">
+		<div id="logo" class="group">
+            <img src="/static/images/dug_02.jpg">
+		    <h1 class="raretunes"><em>rare</em>Tunes</h1>
+            {# <h1><img src="img/logo-lofi.gif" alt="Tugboat" /></h1> #}
+		</div>
+    </div>
+    <div id="sitenav" ><div id="sitenav-inner">
+        <ul class="group">
+            <li class="home"><a href="/">home</a></li>
+            <li class="recordings"><a href="/recordings/">recordings</a></li>
+            <li class="performers"><a href="/performers/">performers</a></li>
+            <li class="tags_nav"><a href="/tags/">tags</a></li>
+            <li class="contact"><a href="/contact/">contact</a></li>
+            {# <li class="faq"><a href="/faq/">FAQ</a></li> #}
+        </ul>
+        <div id="search">
+            <form action="http://www.google.com/cse" id="searchbox_014668001863459659633:267jrzaumjs">
+            <input type="hidden" value="014668001863459659633:267jrzaumjs" name="cx"/>
+            <input type="text" name="q" />
+            <input type="hidden" value="en" name="hl"/>
+            <input type="submit" value="Search" name="sa"/>
+            <input type="hidden" value="FORID:0" name="cof"/>
+            </form>
+        </div>
+    </div></div>
+</div> <!-- /header -->
+
+
+{% comment %}
+    
+<div id="header" class="group">
         <img src="/static/images/dug_02.jpg">
         <h1 class="raretunes"><em>rare</em>Tunes</h1>
         {# <h1 class="raretunes"><span></span><em>rare</em><span></span>Tunes</h1> #}
@@ -55,6 +87,7 @@
         {# </div> #}
     </div>
 </div>
+{% endcomment %}
 
 <div id="main" class="group">
 {% block main %}{% endblock main %}

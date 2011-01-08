@@ -9,7 +9,7 @@
         var current = $('li.playing');
         var id = current.attr('id');
         id = parseInt(id.slice(4)) + 1;
-        console.log(id);
+        {# console.log(id); #}
         current.removeClass('playing');
         return $('#rec_' + id);
     } 
