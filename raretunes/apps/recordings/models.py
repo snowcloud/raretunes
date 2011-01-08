@@ -4,6 +4,7 @@
 
 from django.db import models
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from tagging.fields import TagField
 #from shared_apps.recordings.ia_views import queue_metadata_update
@@ -16,6 +17,10 @@ uploader = UploadApplication('RareUploader', '0.1')
 RECORDING_STATUS = (('new', 'new'), ('published', 'published'), ('withdrawn', 'withdrawn'), )
 RECORDING_STATUS_DEFAULT = 'new'
 RECORDING_STATUS_PUBLISHED = 'published'
+
+
+
+
 
 
 class ArtistsWithRecordingsManager(models.Manager):
@@ -36,7 +41,7 @@ class Artist(models.Model):
     year_of_death = models.CharField(max_length=4, blank=True)
     url = models.URLField(blank=True)
     note = models.TextField(blank=True)
-    pic = models.ImageField(upload_to="artists", null=True, blank=True)
+    pic = models.ImageField(help_text=_('Display width will be 240px'), upload_to="artists", null=True, blank=True)
     pic_credit = models.TextField(null=True, blank=True)
     additional_info = models.TextField(null=True, blank=True)
     tags = TagField()
@@ -233,3 +238,28 @@ class Recording(models.Model):
                 result[m] = md
         
         return result
+
+###############################################################
+class Collection(models.Model):
+###############################################################
+    title = models.CharField(max_length=240)
+    slug = models.CharField(max_length=84, unique=True)
+    note = models.TextField(null=True, blank=True) 
+    pic = models.ImageField(help_text=_('Display width will be 240px'), upload_to="collections", null=True, blank=True)
+    pic_credit = models.TextField(null=True, blank=True)
+    additional_info = models.TextField(null=True, blank=True)
+    tags = TagField()
+    status = models.CharField(max_length=36, choices=RECORDING_STATUS, default=RECORDING_STATUS_DEFAULT)
+    date_entered = models.DateField(default=datetime.date.today)
+    items = models.ManyToManyField(Recording, through='CollectionItem', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.title
+    
+
+###############################################################
+class CollectionItem(models.Model):
+###############################################################
+    collection = models.ForeignKey(Collection)
+    recording = models.ForeignKey(Recording)
+    order = models.IntegerField(default=0)

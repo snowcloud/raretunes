@@ -1,5 +1,5 @@
 from django.contrib import admin
-from recordings.models import Artist, Recording, ARCHIVE_METADATA
+from recordings.models import Artist, Recording, Collection, CollectionItem, ARCHIVE_METADATA
 
 class ArtistAdmin(admin.ModelAdmin):
     ordering = ['last_name']
@@ -44,3 +44,5 @@ class RecordingAdmin(admin.ModelAdmin):
 
 admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Recording, RecordingAdmin)
+admin.site.register(Collection)
+admin.site.register(CollectionItem)

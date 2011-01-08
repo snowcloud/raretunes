@@ -9,7 +9,10 @@
 
 <div class="article">
     <div class="group">
-    {% if object.pic %}<img class="pic" src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/>{% endif %}
+    {% if object.pic %}<div class="pic"><img src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/>
+            
+            {{ object.pic_credit|default:""|textile }}
+        </div>{% endif %}
     <h1>{{ object.full_name }}</h1>
     {% if object.year_of_birth or object.year_of_death %}<p class="">
         {% if object.year_of_birth %}b. {{ object.year_of_birth }}&nbsp;&nbsp;&nbsp;{% endif %}
@@ -17,6 +20,9 @@
     </p>{% endif %}
     
         {{ object.note|textile }}
+            
+    {% if object.additional_info %}<p><a href="#additional-info">additional information &hellip;</a></p>{% endif %}
+        
     </div>
     <div class="info">
     {% if object.url %}web: <ul class="tags"><li><a href="{{ object.url }}">{{ object.url }}</a></li></ul>{% endif %}
@@ -25,7 +31,7 @@
     </div>           
 </div>
 <br/>
-<div class="article"><h1>Recordings</h1>
+<div class="article"><h2>Recordings</h2>
 
     {% if object.performers.all %}
 
@@ -45,5 +51,14 @@
     <br>
 </div>
 
+{% if object.additional_info %}
+    <div id="additional-info" class="article">
+        <div class="group">
+        <h2>Additional information</h2>
+        {{ object.additional_info|textile }}
+        </div>
+    </div>
+    
+{% endif %}
 
 {% endblock %}
