@@ -239,6 +239,8 @@ class Recording(models.Model):
         
         return result
 
+COLLECTION_TEMPLATE_DEFAULT = 'collections/default.html'
+
 ###############################################################
 class Collection(models.Model):
 ###############################################################
@@ -255,6 +257,10 @@ class Collection(models.Model):
 
     def __unicode__(self):
         return self.title
+        
+    def get_items(self):
+        """docstring for get_items"""
+        return CollectionItem.objects.filter(collection=self).order_by('order')
     
 
 ###############################################################
@@ -263,3 +269,9 @@ class CollectionItem(models.Model):
     collection = models.ForeignKey(Collection)
     recording = models.ForeignKey(Recording)
     order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __unicode__(self):
+        return'%s - %s' % (self.collection.title, self.recording.title)

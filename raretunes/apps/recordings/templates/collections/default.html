@@ -1,0 +1,58 @@
+{% extends "recordings/recording_base.html" %}
+{% load markup recordingtags tagging_tags %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block body %}id="collections"{% endblock %}
+
+{% block content %}
+
+<div class="article">
+    <div class="group">
+    {% if object.pic %}<div class="pic"><img src="/static/{{ object.pic }}" alt="picture of {{ object.full_name }}"/>
+            
+            {{ object.pic_credit|default:""|textile }}
+        </div>{% endif %}
+    <h1>{{ object.title }}</h1>
+    
+    {{ object.note|textile }}
+            
+    {% if object.additional_info %}<p><a href="#additional-info">additional information &hellip;</a></p>{% endif %}
+        
+    </div>
+    <div class="info">
+    {% show_tags object %}
+    </div>           
+</div>
+<br/>
+<div class="article"><h2>Recordings</h2>
+
+    {% if items %}
+
+    <audio preload="none"></audio> 
+    
+    <ol class="recordings">
+        {% for o in items %}
+          {% if o.published %}
+            {% show_recording o %}
+          {% endif %}
+        {% endfor %}
+    </ol>
+
+    {% else %}
+        <p>No recordings yet.</p>
+    {% endif %}
+    <br>
+</div>
+
+{% if object.additional_info %}
+    <div id="additional-info" class="article">
+        <div class="group">
+        <h2>Additional information</h2>
+        {{ object.additional_info|textile }}
+        </div>
+    </div>
+    
+{% endif %}
+
+{% endblock %}

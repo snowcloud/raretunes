@@ -1,0 +1,35 @@
+{% extends "base_site.html" %}
+{% load markup recordingtags sitevars tagging_tags %}
+
+{% block title %}collections{% endblock %}
+
+{% block body %}id="collections"{% endblock %}
+
+{% block content %}
+
+<div class="article">
+{% if latest %}
+<h1>Latest Collections</h1>
+
+<p>These are our collections in order of addition to RareTunes. You can also see a <a href="{% url collections %}">full list of collections</a>.</p>
+{% else %}<h1>Collections</h1>{% endif %}
+
+<p class="info">Collections hold playlists, albums, and recordings &amp; performers, composers from particular sources or grouped round a theme.</p>
+
+<br>
+    {% if object_list %}
+        <ul>
+            {% for object in object_list %}
+                <li><a href="{% url collection object.slug %}">{{ object }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No collections found.</p>
+    {% endif %}
+
+
+
+</div>
+
+
+{% endblock %}

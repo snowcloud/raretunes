@@ -73,7 +73,7 @@ float: left; margin-top: -10px; }
 
 	
 #sitenav {
-	background-color: red;
+	background-color: #f50;
 	position: relative;
 	width: auto;
 	min-width: 680px;
@@ -104,10 +104,10 @@ float: left; margin-top: -10px; }
 	xtext-transform: uppercase;
 	xletter-spacing: 2px;
 	xcolor: #f3f2e8;
-	border-left: 1px solid #d10012;
+	border-left: 1px solid #fb6e4f;
 	padding: .4em 15px;
 	}
-#sitenav ul li a:hover { border-left: 1px solid #d10012; background-color: #d10012; }
+#sitenav ul li a:hover { border-left: 1px solid #fb6e4f; background-color: #dd4916; }
 
 #search { 
     float: right;

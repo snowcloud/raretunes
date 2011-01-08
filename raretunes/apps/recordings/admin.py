@@ -42,7 +42,17 @@ class RecordingAdmin(admin.ModelAdmin):
         }),
     )
 
+class CollectionItemAdmin(admin.TabularInline):
+    model = CollectionItem
+    ordering = ['order']
+    
+class CollectionAdmin(admin.ModelAdmin):
+    ordering = ['title']
+    prepopulated_fields = {'slug': ("title",)}
+    inlines = [ CollectionItemAdmin, ]
+
+
 admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Recording, RecordingAdmin)
-admin.site.register(Collection)
+admin.site.register(Collection, CollectionAdmin)
 admin.site.register(CollectionItem)

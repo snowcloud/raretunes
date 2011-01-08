@@ -10,7 +10,8 @@ from tagging.models import Tag
 from contact_form.views import contact_form
 from scutils.forms import SCContactForm
 
-from recordings.models import Artist
+from recordings.models import Artist, Collection
+from recordings.views import collections_detail
 admin.autodiscover()
 
 latest_performers_info = {
@@ -19,16 +20,23 @@ latest_performers_info = {
     "template_name" : "recordings/performers_list.html",
     "extra_context": {'latest': True},
 }
+collections_info = {
+    "queryset": Collection.objects.all().filter(status='published'),
+    "template_name" : "collections/collections_index.html",
+}
 
 urlpatterns = patterns('',
     # Example:
-    (r'^$', 'home.views.index'),
+    url(r'^$', direct_to_template, { 'template': 'home/index.html' }, name='home'),
 
     url(r'^contact/$', contact_form, { 'form_class': SCContactForm }, name='contact'),
     url(r'^contact/sent/$', direct_to_template, { 'template': 'contact_form/contact_form_sent.html' },
         name='contact_form_sent'),
 
     (r'^recordings/', include('recordings.urls')),
+
+    url(r'^collections/$', list_detail.object_list, collections_info, name="collections"),        
+    url(r'^collections/(?P<slug>[^/]+)', collections_detail, name="collection"),
 
     url(r'^performers/$', list_detail.object_list, 
         dict(queryset=Artist.objects.all(), 

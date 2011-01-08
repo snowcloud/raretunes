@@ -36,9 +36,9 @@
               <li><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></li>
             {% endfor %}
             </ul>
+            <p><a href="{% url recordings-latest %}">more &hellip;</a></p>
         {% endif %}
         
-        <p><a href="{% url recordings-latest %}">more &hellip;</a></p>
         
     </div>
     <div class="article grid_4 ">
@@ -51,13 +51,24 @@
               <li><a href="/performers/{{ i.slug }}/">{{ i.full_name }}</a></li>
             {% endfor %}
             </ul>
+            <p><a href="{% url performers-latest %}">more &hellip;</a></p>
         {% endif %}
-        <p><a href="{% url performers-latest %}">more &hellip;</a></p>
     </div>
     <div class="article grid_4 omega">
         <h3>RareTunes collections</h3>
+
+        {% get_latest collections 10 as latest_collections %}
+        {% if latest_collections %}
+            <ul>
+            {% for i in latest_collections %}
+              <li><a href="{% url collection i.slug %}">{{ i.title }}</a></li>
+            {% endfor %}
+            </ul>
+            <p><a href="{% url collections %}">all collections &hellip;</a></p>
+        {% else %}
         
         <p>We are working on a new feature for RareTunes. <em>Collections</em> will hold playlists, albums, and recordings &amp; performers, composers from particular sources or grouped round a theme. Stay raretuned for more details.</p>
+        {% endif %}
         
         {# <ul> #}
         {#   <li><a href="">Ferguson's Auld Reikie</a></li> #}

@@ -80,7 +80,7 @@ def xspf_button(value):
 #ARCHIVE_STREAM_URL = '%sdownload/raretunes__%%s/raretunes__%%s' % ARCHIVE_URL
 
 from django.template import Library, Node, TemplateSyntaxError
-from recordings.models import Recording, Artist
+from recordings.models import Recording, Artist, Collection
 
 # eg get_latest news 3 as latest_entries
 
@@ -93,6 +93,8 @@ class LatestContentNode(Node):
             context[self.varname] = Recording.published_recordings.all().order_by('-date_entered')[:self.num]
         elif self.item_type == 'artists':
             context[self.varname] = Artist.with_recordings.all().order_by('-date_entered')[:self.num]
+        elif self.item_type == 'collections':
+            context[self.varname] = Collection.objects.all().filter(status='published').order_by('-date_entered')[:self.num]
         else:
             raise TemplateSyntaxError, "second argument to get_latest tag must be recordings|artists" 
         return '' 

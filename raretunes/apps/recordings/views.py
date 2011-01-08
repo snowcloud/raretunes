@@ -4,7 +4,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import Context, loader
-from recordings.models import Recording
+from recordings.models import Recording, Collection, COLLECTION_TEMPLATE_DEFAULT
 
 # def search(request):
 #     objects = None
@@ -19,6 +19,15 @@ from recordings.models import Recording
 #             objects = Recording.published_recordings.filter(note__search=terms)
 #         
 #     return render_to_response('recordings/search_results.html', { 'terms': terms, 'error_msg': error_msg, 'objects': objects })
+
+def collections_detail(request, slug):
+    """docstring for collection"""
+    o = get_object_or_404(Collection.objects.filter(status='published'), slug=slug)
+    
+    template = getattr(o, 'template', COLLECTION_TEMPLATE_DEFAULT)
+    
+    return render_to_response(template, {'object': o, 'items': o.items.order_by('collectionitem__order')})
+    
 
 def abc(request, slug):
     o = get_object_or_404(Recording.published_recordings, slug=slug)
