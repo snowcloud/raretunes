@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load recordingtags %}
 {% block head_extra %}{% endblock %}
 {% block js_docready %}{% endblock %}
 {% block body_id %}{% endblock %}
@@ -16,51 +17,32 @@
 <div id="sidebar">
 
 <div class="aside links">
-        <h3>Latest recordings</h3>
+    <h3>Latest recordings</h3>
+    {% get_latest recordings 10 as latest_recordings %}
+
+    {% if latest_recordings %}
         <ul>
-
-          <li><a href="/recordings/saved-his-grace/">Saved by his Grace</a></li>
-
-          <li><a href="/recordings/swing-low/">Swing low</a></li>
-
-          <li><a href="/recordings/im-trampin/">I'm a trampin'</a></li>
-
-          <li><a href="/recordings/thou-art-my-rock/">Thou art my rock</a></li>
-
-          <li><a href="/recordings/ballad-johnny-ramensky/">Ballad of Johnny Ramensky</a></li>
-
-          <li><a href="/recordings/day-we-went-rothesay-o/">Day we went to Rothesay O</a></li>
-
-          <li><a href="/recordings/land-o-leal/">Land o' the leal</a></li>
-
-          <li><a href="/recordings/my-ain-countrie/">My Ain Countrie</a></li>
-
-          <li><a href="/recordings/rigs-o-rye/">Rigs o rye</a></li>
-
-          <li><a href="/recordings/now-westlin-winds-and-slaughtring-guns/">Now westlin winds and slaught'ring guns</a></li>
-
+        {% for i in latest_recordings %}
+          <li><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></li>
+        {% endfor %}
         </ul>
-        <p><a href="/">more &hellip;</a></p>
-        </div>
+    {% endif %}
+    <p><a href="{% url recordings-latest %}">more &hellip;</a></p>
+</div>
+        
 <div class="aside links">
-        <h3>Latest artists</h3>
+    <h3>Latest performers</h3>
+    {% get_latest artists 6 as latest_artists %}
+
+    {% if latest_artists %}
         <ul>
-
-          <li><a href="/performers/william-macewan/">William MacEwan</a></li>
-
-          <li><a href="/performers/john-maccoll/">John MacColl</a></li>
-
-          <li><a href="/performers/rev-d-duncan-mcneill/">Rev D. (Duncan) McNeill</a></li>
-
-          <li><a href="/performers/edward-machugh/">Edward MacHugh</a></li>
-
-          <li><a href="/performers/stuart-macgregor/">Stuart Macgregor</a></li>
-
-          <li><a href="/performers/bob-and-bert/"> Bob and Bert</a></li>
-
+        {% for i in latest_artists %}
+          <li><a href="/performers/{{ i.slug }}/">{{ i.full_name }}</a></li>
+        {% endfor %}
         </ul>
-        <p><a href="/">more &hellip;</a></p>
-        </div>
+    {% endif %}
+    <p><a href="{% url performers-latest %}">more &hellip;</a></p>
+</div>
 
 <div class="aside links">
 <h3>Links</h3>

@@ -7,9 +7,16 @@
 
 {% block content %}
 
-<div class="article"><h1>Performers</h1>
-<p>Where possible, the permission of performers has been obtained before making these recordings available. If you have any questions about a recording, please contact us.</p>
+<div class="article">
+{% if latest %}
+<h1>Latest Performers</h1>
 
+<p>These are our performers in order of addition to RareTunes. Only performers with recordings available are listed. You can also see a <a href="{% url performers %}">full list of performers</a>.</p>
+{% else %}<h1>Performers</h1>{% endif %}
+
+<p class="info">Where possible, the permission of performers has been obtained before making these recordings available. If you have any questions about a recording, please <a href="{% url contact %}">contact us</a>.</p>
+
+<br>
     {% if object_list %}
         <ul>
             {% for object in object_list %}

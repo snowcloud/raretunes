@@ -3,6 +3,7 @@ from os import path as os_path
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.views.generic import list_detail
 from django.views.generic.simple import direct_to_template
 from tagging.models import Tag
 
@@ -12,29 +13,38 @@ from scutils.forms import SCContactForm
 from recordings.models import Artist
 admin.autodiscover()
 
+latest_performers_info = {
+    "queryset": Artist.with_recordings.all().order_by('-date_entered'),
+    "paginate_by": 400,
+    "template_name" : "recordings/performers_list.html",
+    "extra_context": {'latest': True},
+}
+
 urlpatterns = patterns('',
     # Example:
     (r'^$', 'home.views.index'),
 
-    url(r'^contact/$', contact_form, { 'form_class': SCContactForm }, name='contact_form'),
+    url(r'^contact/$', contact_form, { 'form_class': SCContactForm }, name='contact'),
     url(r'^contact/sent/$', direct_to_template, { 'template': 'contact_form/contact_form_sent.html' },
         name='contact_form_sent'),
 
     (r'^recordings/', include('recordings.urls')),
 
-    (r'^performers/$', 'django.views.generic.list_detail.object_list', 
+    url(r'^performers/$', list_detail.object_list, 
         dict(queryset=Artist.objects.all(), 
         paginate_by=400,
-        template_name='recordings/performers_list.html' )),    
-    url(r'^performers/(?P<slug>[^/]+)', 'django.views.generic.list_detail.object_detail', 
+        template_name='recordings/performers_list.html' ), name="performers"),
+    url(r'^performers/latest/$', list_detail.object_list, latest_performers_info, name="performers-latest"),        
+    url(r'^performers/(?P<slug>[^/]+)', list_detail.object_detail, 
         dict(queryset=Artist.objects.all(),
         slug_field='slug',
-        template_name='recordings/performers_detail.html'), name="performer"),    
-    url(r'^tags/$', 'django.views.generic.list_detail.object_list',
+        template_name='recordings/performers_detail.html'), name="performer"),
+        
+    url(r'^tags/$', list_detail.object_list,
         dict(queryset=Tag.objects.all(),
         paginate_by=400,
         template_name='tags/tags_index.html',), name="tags"),
-    url(r'^tags/(?P<slug>[^/]+)/$', 'django.views.generic.list_detail.object_detail', 
+    url(r'^tags/(?P<slug>[^/]+)/$', list_detail.object_detail, 
         dict(queryset=Tag.objects.all(), 
         slug_field='name',
         template_name='tags/tags_detail.html', ), name="tag"),

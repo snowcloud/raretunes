@@ -7,7 +7,14 @@
 
 {% block content %}
 
-<div class="article"><h1>Recordings</h1>
+<div class="article">
+{% if latest %}
+    <h1>Latest Recordings</h1>
+
+    <p>These are our recordings in order of addition to RareTunes. You can also see a <a href="{% url recordings %}">full list of recordings</a>.</p>
+
+{% else %}<h1>Recordings</h1>{% endif %}
+
 <p>The recordings range from near-studio quality to crowded and noisy house sessions, from digital media to old bits of tape to 78 rpm discs.</p>
 </div>
 

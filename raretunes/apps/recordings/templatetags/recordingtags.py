@@ -92,7 +92,7 @@ class LatestContentNode(Node):
         if self.item_type == 'recordings':
             context[self.varname] = Recording.published_recordings.all().order_by('-date_entered')[:self.num]
         elif self.item_type == 'artists':
-            context[self.varname] = Artist.objects.all().order_by('-date_entered')[:self.num]
+            context[self.varname] = Artist.with_recordings.all().order_by('-date_entered')[:self.num]
         else:
             raise TemplateSyntaxError, "second argument to get_latest tag must be recordings|artists" 
         return '' 

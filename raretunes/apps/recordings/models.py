@@ -18,6 +18,10 @@ RECORDING_STATUS_DEFAULT = 'new'
 RECORDING_STATUS_PUBLISHED = 'published'
 
 
+class ArtistsWithRecordingsManager(models.Manager):
+    def get_query_set(self):
+        return super(ArtistsWithRecordingsManager, self).get_query_set().filter(performers__isnull=False).distinct()
+
 ###############################################################
 class Artist(models.Model):
 ###############################################################
@@ -35,6 +39,9 @@ class Artist(models.Model):
     pic = models.ImageField(upload_to="artists", null=True, blank=True)
     tags = TagField()
     date_entered = models.DateField(default=datetime.date.today)
+
+    objects = models.Manager()
+    with_recordings = ArtistsWithRecordingsManager()
 
     class Admin:
         pass

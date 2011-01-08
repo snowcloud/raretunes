@@ -12,11 +12,18 @@ recording_info = {
     "queryset": Recording.published_recordings.all(),
     "template_name" : "recordings/recordings_list.html"
 }
+latest_recording_info = {
+    "queryset": Recording.published_recordings.all().order_by('-date_entered'),
+    "paginate_by": 400,
+    "template_name" : "recordings/recordings_list.html",
+    "extra_context": {'latest': True},
+}
 
 
 urlpatterns = patterns('',
 
-    (r'^$', list_detail.object_list, recording_info),
+    url(r'^$', list_detail.object_list, recording_info, name="recordings"),
+    url(r'^latest/$', list_detail.object_list, latest_recording_info, name="recordings-latest"),    
     # (r'^search/$', 'recordings.views.search'),
     (r'^abc/(?P<slug>[^/]+)/$', 'recordings.views.abc'),
     (r'^playlist.xspf$', 'recordings.views.playlist'),
