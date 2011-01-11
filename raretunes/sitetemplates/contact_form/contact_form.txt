@@ -1,4 +1,7 @@
 {% load humanize %}
+
+DO NOT REPLY TO THIS MESSAGE- REPLY TO THE EMAIL ADDRESS BELOW
+
 sender: {{ name }}
 email: {{ email }}
 

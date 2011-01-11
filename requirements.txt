@@ -13,3 +13,7 @@ django-pagination
 boto
 BeautifulSoup
 
+# sc-utils
+vobject
+-e git+git://github.com/jsocol/bleach.git#egg=bleach
+
