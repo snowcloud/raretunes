@@ -22,8 +22,8 @@ blockquote, q {
 	}
 
 :focus {
-	outline: 0;
-	}
+    outline: 1;
+    }
 
 table {
 	border-collapse: collapse;
