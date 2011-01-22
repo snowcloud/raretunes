@@ -14,7 +14,7 @@ recording_info = {
 }
 latest_recording_info = {
     "queryset": Recording.published_recordings.all().order_by('-date_entered'),
-    "paginate_by": 400,
+    # "paginate_by": 400,
     "template_name" : "recordings/recordings_list.html",
     "extra_context": {'latest': True},
 }
