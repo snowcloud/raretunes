@@ -13,6 +13,7 @@ django-pagination
 boto
 BeautifulSoup
 -e svn+http://svn.effbot.org/public/tags/elementtree-1.3a3-20070912#egg=ElementTree
+ClientForm
 
 # sc-utils
 vobject
