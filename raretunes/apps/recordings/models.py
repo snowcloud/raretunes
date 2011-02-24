@@ -214,7 +214,7 @@ class Recording(models.Model):
         return 'http://creativecommons.org/licenses/%s/' % self.licence_type.replace('_', '/')
 
     def make_subjects(self):
-        _subjects = '%s; %s' % ('; '.join(list(self.tags.all())), settings.DEF_TAGS)
+        _subjects = '%s; %s' % ('; '.join(self.tags), settings.DEF_TAGS)
         if self.other_keywords:
             others = '; '.join([kw.strip() for kw in self.other_keywords.split(',')])
             if others:
