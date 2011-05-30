@@ -171,7 +171,7 @@ ARCHIVE_STREAM_URL = '%sdownload/%%s/%%s' % ARCHIVE_URL
 
 IA_ARCHIVE_FTP = ('ftp://ia300102.us.archive.org/', )
 STANDARD_FOOTER = 'Part of the Raretunes Archive- see \nhttp://www.raretunes.org/recordings/%s/'
-FILE_CLAIM = '2008 RareTunes. Licensed to the public under %s verify at http://www.archive.org/details/%s'
+FILE_CLAIM = '2011 RareTunes. Licensed to the public under %s verify at http://www.archive.org/details/%s'
 
 
 # override any of the above in your own settings_local.py
