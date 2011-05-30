@@ -72,7 +72,9 @@
                       <ol class="recordings">
                           {% for o in artist.performers.all %}
                               {% if o.published %}
-                                {% show_recording o %}
+                                {% if object.name in o.tags %}
+                                    {% show_recording o %}                                
+                                {% endif %}
                               {% endif %}
                          {% endfor %}
                       </ol>
@@ -86,7 +88,6 @@
     {% else %}
     <p>No performers found for this.</p>
     {% endif %}
-
 
     {# {% if object.recording_set.all %} #}
     {# <h2>All Recordings: </h2> #}
