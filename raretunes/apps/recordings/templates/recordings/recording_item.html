@@ -6,4 +6,5 @@
         <a href="{{ recording.play_url }}" class="mp3link">mp3</a> |
         <a href="{% url recording recording.slug %}" class="recordinginfo">details</a>
     </div>
+    {% show_tags_nolabel recording %}
 </li>

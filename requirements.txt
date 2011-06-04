@@ -3,7 +3,7 @@ South
 django-tagging
 textile
 docutils
-# PIL best installed on server
+# PIL installed on server?
 # PIL==1.1.7
 
 -e git+git://github.com/snowcloud/sc-utils.git#egg=sc-utils
@@ -12,4 +12,10 @@ django-pagination
 
 boto
 BeautifulSoup
-# # pyarchive
+-e svn+http://svn.effbot.org/public/tags/elementtree-1.3a3-20070912#egg=ElementTree
+ClientForm
+
+# sc-utils
+vobject
+-e git+git://github.com/jsocol/bleach.git#egg=bleach
+

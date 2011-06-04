@@ -8,7 +8,8 @@ from django.views.generic.simple import direct_to_template
 from tagging.models import Tag
 
 from contact_form.views import contact_form
-from scutils.forms import SCContactForm
+from scutils.forms import SCContactForm, SimpleStaticSiteContactForm
+from scutils.views import external_contact_form
 
 from recordings.models import Artist, Collection
 from recordings.views import collections_detail
@@ -32,6 +33,8 @@ urlpatterns = patterns('',
     url(r'^contact/$', contact_form, { 'form_class': SCContactForm }, name='contact'),
     url(r'^contact/sent/$', direct_to_template, { 'template': 'contact_form/contact_form_sent.html' },
         name='contact_form_sent'),
+    
+    (r'^contact-ext/$', external_contact_form, { 'form_class': SimpleStaticSiteContactForm }),
 
     (r'^recordings/', include('recordings.urls')),
 

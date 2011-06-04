@@ -72,7 +72,9 @@
                       <ol class="recordings">
                           {% for o in artist.performers.all %}
                               {% if o.published %}
-                                {% show_recording o %}
+                                {% if object.name in o.tags %}
+                                    {% show_recording o %}                                
+                                {% endif %}
                               {% endif %}
                          {% endfor %}
                       </ol>
@@ -86,28 +88,6 @@
     {% else %}
     <p>No performers found for this.</p>
     {% endif %}
-
-
-    {# {% if object.recording_set.all %} #}
-    {# <h2>All Recordings: </h2> #}
-    {#   <ul> #}
-    {#     {% for o in object.recording_set.all %} #}
-    {#         {% if o.published %} #}
-    {#         <li>{{ o|track_link }} - {% for p in o.performers.all %}<a href="/performers/{{ p.slug }}/">{{ p.full_name }}</a>{% if not forloop.last%}, {% endif %}{% endfor %} #}
-    {#           {% ifnotequal o.tags.count 1 %}<small>&nbsp; also under:</small> #}
-    {#             <ul class="tags"> #}
-    {#             {% for t in o.tags.all %} #}
-    {#               {% ifnotequal object t %} #}
-    {#                 <li><a href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% if not forloop.last%}, {% endif %}</li> #}
-    {#               {% endifnotequal %} #}
-    {#             {% endfor %} #}
-    {#             </ul> #}
-    {#           {% endifnotequal %} #}
-    {#         </li> #}
-    {#         {% endif %} #}
-    {#     {% endfor %} #}
-    {#   </ul> #}
-    {# {% endif %} #}
 
 </div>
 
