@@ -60,6 +60,7 @@ urlpatterns = patterns('',
         slug_field='name',
         template_name='tags/tags_detail.html', ), name="tag"),
 
+    (r'^admin/', include('recordings.admin_urls')),
     (r'^admin/', include(admin.site.urls)),
 )
 

@@ -9,3 +9,4 @@
 /raretunes/sql_data
 /raretunes/static/artists
 .DS_Store
+/raretunes/static/recordings/

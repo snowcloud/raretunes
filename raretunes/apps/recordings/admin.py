@@ -15,7 +15,7 @@ class RecordingAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'title', 'slug', 'note', 'sound_file', 'performers', 
+                'title', 'slug', 'note', 'sound_file', 'uploaded_file', 'performers', 
                 'tags', 'other_keywords', 'archive', 'licence_type', 'attribution_url',
                 'recording_date', 'run_time', 'composers', 'status' 
                 )
