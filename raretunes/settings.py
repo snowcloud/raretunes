@@ -162,6 +162,7 @@ MP3_TEMP_PATH = '/path/to/folder/'
 AWS_U = 'your-amazon-user-key'
 AWS_K = 'your-amazon-secret-key'
 AWS_BUCKET = 'amazon.bucket.name'
+AWS_UPLOADS = 'your_upload_folder'
 
 # archive.org urls
 ARCHIVE_URL = 'http://www.archive.org/'
@@ -169,7 +170,7 @@ ARCHIVE_DETAILS_URL = '%sdetails/%%s' % ARCHIVE_URL
 ARCHIVE_DOWNLOAD_URL = '%sdownload/%%s/%%s' % ARCHIVE_URL
 ARCHIVE_STREAM_URL = '%sdownload/%%s/%%s' % ARCHIVE_URL
 
-IA_ARCHIVE_FTP = ('ftp://ia300102.us.archive.org/', )
+# IA_ARCHIVE_FTP = ('ftp://ia300102.us.archive.org/', ) NOT USED
 STANDARD_FOOTER = 'Part of the Raretunes Archive- see \nhttp://www.raretunes.org/recordings/%s/'
 FILE_CLAIM = '2011 RareTunes. Licensed to the public under %s verify at http://www.archive.org/details/%s'
 

@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% block title %}Uploads waiting{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="/admin/">Home</a> > <a href="/admin/recordings/">Recordings</a> > <a href="/admin/recordings/recording/">Recordings</a></div>{% endblock %}
+
+Home › Recordings › Recordings
+{% block content %}
+
+<h2>Uploads waiting on Amazon</h2>
+
+<div id="changelist" class="module">
+
+	{% if objects %}
+	
+    <table cellspacing="0">
+        <thead><tr><th>Name</th><th>-</th></tr></thead>
+        <tbody>
+        {% for o in objects %}
+            <tr><!-- ><td><a href="{{ o.0 }}">{{ o.1 }}</a></td> FILES AREN'T READABLE AS UPLOADED -->
+            <td>{{ o.1 }}</td>
+            <td><a href="/">make new recording</a></td></tr>
+        {% endfor %}
+        </tbody>
+    </table>	
+	{% else %}
+	   <p>NO UPLOADS FOUND</p>	
+	{% endif %}	
+
+
+</div>
+{% endblock %}
