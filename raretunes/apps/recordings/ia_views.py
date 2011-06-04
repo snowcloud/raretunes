@@ -25,7 +25,8 @@ from pyarchive.submission import ArchiveItem, UploadApplication
 from iaconnection import IAConnection, IAConnectionError, RESULT_OK
 from recordings.models import Recording
 
-from settings import IA_UPLOADERS, DEF_IA_UPLOADER, Q_RT_CREATE, Q_RT_PUBLISH, Q_RT_CHECKIN, Q_RT_UPDATE_METADATA
+from settings import IA_UPLOADERS, DEF_IA_UPLOADER, \
+    Q_RT_GETUPLOAD, Q_RT_CREATE, Q_RT_PUBLISH, Q_RT_CHECKIN, Q_RT_UPDATE_METADATA
 from settings import MP3_TEMP_PATH, AWS_U, AWS_K, AWS_BUCKET
 
 import logging
@@ -76,6 +77,27 @@ def dequeue(q_name, func, conn=None):
 
     #conn_logger.debug('dequeue done')
 
+###############################################################
+def _get_uploaded_file(rec, conn):
+    try:
+        if not isinstance(rec, Recording):
+            try: 
+                rec = Recording.objects.get(pk=rec)
+            except Recording.DoesNotExist:
+                conn_logger.error('get_uploaded_file failed (recording does not exist): %s ' % rec)
+                return True
+        conn_logger.info('get_uploaded_file for recording : %s ' % rec.slug)
+        get_from_S3('%s/%s' % (settings.AWS_UPLOADS, rec.uploaded_file), '%s/recordings/%s' % (settings.MEDIA_ROOT, rec.uploaded_file), remove=True)
+        rec.sound_file = 'recordings/%s' % rec.uploaded_file
+        rec.uploaded_file = None
+        queue(Q_RT_CREATE, str(rec.id))        
+        rec.save()
+    except IAConnectionError, e:
+        conn_logger.error(e)
+        return False
+
+    # conn_logger.info('not dequeuing %s ' % rec.slug)
+    return True
 
 ###############################################################
 def make_IA_archive_item(rec, metadata=None):
@@ -159,6 +181,30 @@ def put_to_S3(fname):
     except IOError, e:
         conn_logger.error('put to S3 failed: %s - %s' % (fname, str(e)))
 
+###############################################################
+def get_from_S3(fname, to_path, remove=False):
+
+    conn = S3Connection(AWS_U, AWS_K)
+    conn_logger.debug('S3 connection')
+    b = conn.create_bucket(AWS_BUCKET)
+    conn_logger.debug('got bucket')
+    
+    k = b.get_key(fname)
+    try:
+        fp = open (to_path, "w")
+        k.get_file (fp)
+        conn_logger.info('got %s from S3 and written to %s' % (fname, to_path))
+        try:
+            k.get_file (fp)
+            conn_logger.info('got %s from S3 and written to %s' % (fname, to_path))
+            if remove:
+                k.delete()
+        except (IOError, AttributeError), e:
+            conn_logger.error('get from S3 failed: %s - %s' % (fname, str(e)))
+        
+    except (IOError, AttributeError), e:
+        conn_logger.error('get from S3 failed: %s - %s' % (fname, str(e)))
+    
 ###############################################################
 def tag_mp3(fname, rec, comment):
     conn_logger.info('tag mp3 %s' % fname)
@@ -252,9 +298,18 @@ def process_checkin(conn):
 
 ###############################################################
 def queue_metadata_update(sender, instance, created, **kwargs):
+
+    # print 'instance.uploaded_file: ', instance.uploaded_file
+    # 
+    # if instance.uploaded_file:
+    #     # print instance.uploaded_file
+    #     queue(Q_RT_GETUPLOAD, str(instance.id))
     
     if created:
-        queue(Q_RT_CREATE, str(instance.id))
+        if instance.uploaded_file:
+            queue(Q_RT_GETUPLOAD, str(instance.id))
+        else:
+            queue(Q_RT_CREATE, str(instance.id))
     elif instance.status != 'new': # not published yet
         queue(Q_RT_UPDATE_METADATA, str(instance.id))
 
@@ -361,6 +416,7 @@ def process_queues(request):
     ia_conn.uploaders = settings.IA_UPLOADERS
     ia_conn.login()
     
+    dequeue(Q_RT_GETUPLOAD, _get_uploaded_file, ia_conn)
     dequeue(Q_RT_CREATE, _create_recording, ia_conn)
     dequeue(Q_RT_CHECKIN, _checkin_message, ia_conn)
     dequeue(Q_RT_PUBLISH, publish, ia_conn)

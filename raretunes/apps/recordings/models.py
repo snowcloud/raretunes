@@ -123,6 +123,7 @@ class Recording(models.Model):
         blank=True
     )
     sound_file = models.FileField(upload_to='recordings', null=True, blank=True)
+    uploaded_file = models.CharField(max_length=64, null=True, blank=True, help_text="name of file if in S3 upload area")
     run_time = models.CharField(max_length=8, null=True, blank=True, help_text='mm:ss')
     
     #archive metadata
