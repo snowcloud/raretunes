@@ -1,5 +1,7 @@
+from django import forms
 from django.contrib import admin
-from recordings.models import Artist, Recording, Collection, CollectionItem, ARCHIVE_METADATA
+# from django.db import models
+from recordings.models import Artist, Recording, Collection, CollectionItem, ARCHIVE_METADATA, S3UploadField, S3ChoiceWidget
 
 class ArtistAdmin(admin.ModelAdmin):
     ordering = ['last_name']
@@ -12,6 +14,9 @@ class RecordingAdmin(admin.ModelAdmin):
     list_editable = ('status',)
     list_filter = ('status', )
     search_fields = ('title' ,)
+    formfield_overrides = {
+            S3UploadField: {'widget': S3ChoiceWidget},
+        }
     fieldsets = (
         (None, {
             'fields': (
