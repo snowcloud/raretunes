@@ -1,7 +1,7 @@
 """ raretunes.recordings.models.py
 
 """
-
+from django import forms
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -17,10 +17,6 @@ uploader = UploadApplication('RareUploader', '0.1')
 RECORDING_STATUS = (('new', 'new'), ('published', 'published'), ('withdrawn', 'withdrawn'), )
 RECORDING_STATUS_DEFAULT = 'new'
 RECORDING_STATUS_PUBLISHED = 'published'
-
-
-
-
 
 
 class ArtistsWithRecordingsManager(models.Manager):
@@ -90,7 +86,54 @@ ARCHIVE_METADATA = [
     'opening_text', 'technical_notes',
     ]
 
+class S3ChoiceWidget(forms.Select):
+    """docstring for MyWidge"""
+    
+    def _get_S3_choices(self):
+        
+        from boto.s3.connection import S3Connection
+        from boto.s3.key import Key
+    
+        conn = S3Connection(settings.AWS_U, settings.AWS_K)
+        bucket = conn.get_bucket(settings.AWS_BUCKET)
+    
+        objects = [(o.name[len(settings.AWS_UPLOADS)+1:], o.name[len(settings.AWS_UPLOADS)+1:]) \
+                    for o in bucket.list(settings.AWS_UPLOADS)]
+        # print objects
+        return objects
+    
+    def render(self, name, value, attrs=None, choices=()):
+        return super(S3ChoiceWidget, self).render(name, value, attrs, self._get_S3_choices())
+        
+        
+class S3UploadField(models.CharField):
 
+    description = "A hand of cards (bridge style)"
+
+    # def get_choices(self, include_blank=True, blank_choice=models.BLANK_CHOICE_DASH):
+    #     result = (('a', datetime.datetime.now()), ('b', datetime.datetime.now()),  )
+    #     print result
+    #     return result
+    #     
+    #     
+    # def __init__(self, *args, **kwargs):
+    #     kwargs['choices'] = [('x', 'x')]
+    #     super(S3UploadField, self).__init__(*args, **kwargs)
+    
+    # def _get_choices(self):
+    #     
+    #     from boto.s3.connection import S3Connection
+    #     from boto.s3.key import Key
+    # 
+    #     conn = S3Connection(settings.AWS_U, settings.AWS_K)
+    #     bucket = conn.get_bucket(settings.AWS_BUCKET)
+    # 
+    #     objects = [(o.name[len(settings.AWS_UPLOADS)+1:], o.name[len(settings.AWS_UPLOADS)+1:]) \
+    #                 for o in bucket.list(settings.AWS_UPLOADS)]
+    #     print objects
+    #     return objects #(('a', datetime.datetime.now()), ('b', datetime.datetime.now()),  )
+    # choices = property(_get_choices)
+    
 ###############################################################
 class Recording(models.Model):
 ###############################################################
@@ -123,7 +166,7 @@ class Recording(models.Model):
         blank=True
     )
     sound_file = models.FileField(upload_to='recordings', null=True, blank=True)
-    uploaded_file = models.CharField(max_length=64, null=True, blank=True, help_text="name of file if in S3 upload area")
+    uploaded_file = S3UploadField(max_length=64, null=True, blank=True, help_text="name of file if in S3 upload area")
     run_time = models.CharField(max_length=8, null=True, blank=True, help_text='mm:ss')
     
     #archive metadata
