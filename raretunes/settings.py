@@ -125,10 +125,15 @@ INSTALLED_APPS = (
 LICENCE_PUBLIC_DOMAIN = '<p>This recording is Public Domain.</p>'
 LICENCE_CC_BY_NC_SA_2_5_SCOTLAND = '<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/scotland/"><img alt="Creative Commons License" style="border-width: 0" src="http://i.creativecommons.org/l/by-nc-sa/2.5/scotland/88x31.png"/></a><br/>These recordings are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/scotland/">Creative Commons Attribution-Noncommercial-Share Alike 2.5 UK: Scotland License</a>.<!--/Creative Commons License--><!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"><Work rdf:about=""><license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.5/scotland/" /><dc:type rdf:resource="http://purl.org/dc/dcmitype/Sound" /></Work><License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.5/scotland/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->'
 LICENCE_CC_BY_SA_3_0 = '<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license"><img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" alt="Attribution-Share Alike 3.0" style="border: medium none ;"/></a>'
+LICENCE_CC_BY_NC_ND_3_0_USA = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License</a>.'
+
+
+
 LICENCE_NOT_DEFINED = '<p>Licence not defined.</p>'
 LICENCES = { 
     'by-nc-sa_2.5_scotland': LICENCE_CC_BY_NC_SA_2_5_SCOTLAND, 
-    'by-sa_3.0': LICENCE_CC_BY_SA_3_0, 
+    'by-sa_3.0': LICENCE_CC_BY_SA_3_0,
+    'by-nc-nd_3.0_usa': LICENCE_CC_BY_NC_ND_3_0_USA,
     'public_domain': LICENCE_PUBLIC_DOMAIN
     }
 # used in recordings.models
@@ -140,6 +145,7 @@ LICENCE_TYPES = (
             ('by-nd_2.5_scotland', 'Creative Commons, Attribution-No Derivative Works 2.5 UK: Scotland'),
             ('by-sa_2.5_scotland', 'Creative Commons, Attribution-Share Alike 2.5 UK: Scotland'),
             ('by-sa_3.0', 'Creative Commons, Attribution-Share Alike 3.0'),
+            ('by-nc-nd_3.0_usa', 'Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 United States License'),
             ('public_domain', 'public domain'),
         )
 LICENCE_TYPES_DEFAULT = 'by-nc-sa_2.5_scotland'
