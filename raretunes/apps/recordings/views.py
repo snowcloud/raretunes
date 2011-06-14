@@ -20,6 +20,11 @@ from recordings.models import Recording, Collection, COLLECTION_TEMPLATE_DEFAULT
 #         
 #     return render_to_response('recordings/search_results.html', { 'terms': terms, 'error_msg': error_msg, 'objects': objects })
 
+def short_recording_detail(request, id):
+    print id
+    
+    return HttpResponse('blah')
+    
 def collections_detail(request, slug):
     """docstring for collection"""
     o = get_object_or_404(Collection.objects.filter(status='published'), slug=slug)
