@@ -94,12 +94,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django_hosts.middleware.HostsMiddleware',
     "pagination.middleware.PaginationMiddleware",
     "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 )
-
 ROOT_URLCONF = 'raretunes.urls'
+ROOT_HOSTCONF = 'raretunes.hosts'
+DEFAULT_HOST = 'raretunes'
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -113,12 +115,13 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'django.contrib.redirects',
     'contact_form',
+    'django_hosts',
     'pagination',
     'tagging',
     'home',
     'recordings',
     'scutils',
-    'south'
+    'south',
     
 )
 #  used in recordings.templatetags.recordingtags
