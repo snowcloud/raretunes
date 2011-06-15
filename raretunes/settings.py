@@ -100,6 +100,8 @@ MIDDLEWARE_CLASSES = (
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 )
 ROOT_URLCONF = 'raretunes.urls'
+ROOT_HOSTCONF = 'raretunes.hosts'
+DEFAULT_HOST = 'raretunes'
 
 INSTALLED_APPS = (
     'django.contrib.admin',

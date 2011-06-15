@@ -1,7 +1,8 @@
 """ shared_apps.recordings.views
 
 """
-from django.http import HttpResponse, Http404
+from django.conf import settings
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import Context, loader
 from recordings.models import Recording, Collection, COLLECTION_TEMPLATE_DEFAULT
@@ -20,10 +21,9 @@ from recordings.models import Recording, Collection, COLLECTION_TEMPLATE_DEFAULT
 #         
 #     return render_to_response('recordings/search_results.html', { 'terms': terms, 'error_msg': error_msg, 'objects': objects })
 
-def short_recording_detail(request, id):
-    print id
-    
-    return HttpResponse('blah')
+def short_recording_detail(request, short_id):
+    id = int(short_id, 16)
+    return HttpResponseRedirect('%srecordings/%s/' % (settings.APP_BASE, id))
     
 def collections_detail(request, slug):
     """docstring for collection"""
