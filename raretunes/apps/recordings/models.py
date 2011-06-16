@@ -7,7 +7,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from tagging.fields import TagField
-#from shared_apps.recordings.ia_views import queue_metadata_update
+from recordings.urlshortener import encode_id
 import datetime
 
 from pyarchive.submission import ArchiveItem, UploadApplication
@@ -211,6 +211,9 @@ class Recording(models.Model):
     def get_absolute_url(self):
         return "/recordings/%s/" % self.slug
 
+    def short_url(self):
+        return '%s/r%s' %  (settings.SHORT_URL_HOST, encode_id(self.id))
+    
     def _get_archive_name(self):
         return self.IA_id #slug #.replace('-', '_')
     archive_name = property(_get_archive_name)

@@ -41,7 +41,7 @@
         {% if object.attribution_url %}Attribution to <a href="{{ object.attribution_url }}">{{ object.attribution_url }}</a> and the performer(s).{% endif %}</p>
     {% endifnotequal %}
     
-    <p>Short URL: <a href="http://rare.fm/r{{ object.id|stringformat:"x" }}/">http://rare.fm/r{{ object.id|stringformat:"x" }}/</a></p>
+    <p>Short URL: <a href="{{ object.short_url }}/">{{ object.short_url }}/</a></p>
     </div>
 </div>
 

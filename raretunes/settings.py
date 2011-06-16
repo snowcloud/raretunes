@@ -173,6 +173,7 @@ AWS_K = 'your-amazon-secret-key'
 AWS_BUCKET = 'amazon.bucket.name'
 AWS_UPLOADS = 'your_upload_folder'
 
+SHORT_URL_HOST = 'http://rare.fm'
 # archive.org urls
 ARCHIVE_URL = 'http://www.archive.org/'
 ARCHIVE_DETAILS_URL = '%sdetails/%%s' % ARCHIVE_URL
